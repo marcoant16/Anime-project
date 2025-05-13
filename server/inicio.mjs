@@ -44,7 +44,7 @@ const ChaveMongoose = process.env.ChaveMongoose
 
 // Servir o front-end buildado
     if(process.env.NODE_ENV === 'production') {
-        const clientDistPath = path.resolve(__dirname, '../client-dist');
+        const clientDistPath = path.resolve(__dirname, '../client/anime-project/dist');
         app.use(e.static(clientDistPath));
 
         app.get('*', (req, res) => {
