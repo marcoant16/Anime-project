@@ -247,10 +247,12 @@ function Inicio(){
 
             if (response.ok) {
                 const data = await response.json();
-                setUserData({ ...userData, profileImage: data.imageUrl });
+                // Modificar a URL da imagem para usar a API_URL
+                const imageUrl = data.imageUrl.startsWith('http') ? data.imageUrl : `${API_URL}${data.imageUrl}`;
+                setUserData({ ...userData, profileImage: imageUrl });
                 const userImage = document.getElementById('userimage');
                 if (userImage) {
-                    userImage.src = data.imageUrl;
+                    userImage.src = imageUrl;
                 }
             }
         } catch (error) {
@@ -277,6 +279,10 @@ function Inicio(){
                     
                     const data = await response.json();
                     if (data.user) {
+                        // Modificar a URL da imagem do perfil para usar a API_URL
+                        if (data.user.profileImage && !data.user.profileImage.startsWith('http')) {
+                            data.user.profileImage = `${API_URL}${data.user.profileImage}`;
+                        }
                         setUserData(data.user);
                         setIsLoggedIn(true);
                         // Atualizar a imagem do usuário no header
