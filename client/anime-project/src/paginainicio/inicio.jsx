@@ -45,7 +45,7 @@ function Inicio(){
     };
 
 
-   /////pesquisa de animes 
+   /////pesquisa de anime
 
     const toggleSearch = () => {
         setIsSearchOpen(!isSearchOpen);
