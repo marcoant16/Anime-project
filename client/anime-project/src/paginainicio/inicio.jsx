@@ -2,6 +2,7 @@
 import "../paginainicio/inicio.css"
 import "../paginainicio/iniciorespon.css"
 import { useState, useEffect, useRef } from "react"
+import { API_URL } from '../config';
 
 //svg
 import Heart from "../svgglobal/heart/heart";
@@ -156,7 +157,7 @@ function Inicio(){
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:3000/api/users/login', {
+            const response = await fetch(`${API_URL}/api/users/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'include',
@@ -167,7 +168,7 @@ function Inicio(){
             if (response.ok) {
                 localStorage.setItem('token', data.token);
                 // Buscar dados completos do usuário após o login
-                const userResponse = await fetch('http://localhost:3000/api/users/me', {
+                const userResponse = await fetch(`${API_URL}/api/users/me`, {
                     headers: {
                         'Authorization': `Bearer ${data.token}`
                     }
@@ -195,7 +196,7 @@ function Inicio(){
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:3000/api/users/register', {
+            const response = await fetch(`${API_URL}/api/users/register`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'include',
@@ -235,7 +236,7 @@ function Inicio(){
         formData.append('image', file);
 
         try {
-            const response = await fetch('http://localhost:3000/api/users/upload-image', {
+            const response = await fetch(`${API_URL}/api/users/upload-image`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -264,7 +265,7 @@ function Inicio(){
             const token = localStorage.getItem('token');
             if (token) {
                 try {
-                    const response = await fetch('http://localhost:3000/api/users/me', {
+                    const response = await fetch(`${API_URL}/api/users/me`, {
                         headers: {
                             'Authorization': `Bearer ${token}`
                         }
@@ -309,7 +310,7 @@ function Inicio(){
         }
 
         try {
-            const response = await fetch('http://localhost:3000/api/favoritos', {
+            const response = await fetch(`${API_URL}/api/favoritos`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
@@ -329,7 +330,7 @@ function Inicio(){
     const handleDeleteAccount = async () => {
         if (window.confirm('Tem certeza que deseja deletar sua conta? Esta ação não pode ser desfeita.')) {
             try {
-                const response = await fetch('http://localhost:3000/api/users/delete-account', {
+                const response = await fetch(`${API_URL}/api/users/delete-account`, {
                     method: 'DELETE',
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -697,7 +698,7 @@ function Inicio(){
                                                 className="remove-favorite"
                                                 onClick={async () => {
                                                     try {
-                                                        const response = await fetch(`http://localhost:3000/api/favoritos/${favorite._id}`, {
+                                                        const response = await fetch(`${API_URL}/api/favoritos/${favorite._id}`, {
                                                             method: 'DELETE',
                                                             headers: {
                                                                 'Authorization': `Bearer ${localStorage.getItem('token')}`

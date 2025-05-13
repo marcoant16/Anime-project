@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { API_URL } from '../../config';
 
 function Heart({ animeData }) {
     const [isFavorited, setIsFavorited] = useState(false);
@@ -39,7 +40,7 @@ function Heart({ animeData }) {
 
             console.log('Enviando dados para o servidor:', favoriteData);
 
-            const response = await fetch('http://localhost:3000/api/favoritos', {
+            const response = await fetch(`${API_URL}/api/favoritos`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
