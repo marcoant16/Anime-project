@@ -42,16 +42,6 @@ app.use((err, req, res, next) => {
 let  PORT = process.env.PORT || 3000
 const ChaveMongoose = process.env.ChaveMongoose
 
-// Servir o front-end buildado
-    if(process.env.NODE_ENV === 'production') {
-        const clientDistPath = path.resolve(__dirname, '../client/anime-project/dist');
-        app.use(e.static(clientDistPath));
-
-        app.get('*', (req, res) => {
-            res.sendFile(path.join(clientDistPath, 'index.html'));
-        });
-}
-
 mongoose.connect(ChaveMongoose)
 .then(()=>{
     app.listen(PORT,()=>{
