@@ -1,0 +1,96 @@
+@charset "UTF-8";
+
+@media screen and (max-width: 768px) {
+    .kianaheader {
+        height: auto;
+    }
+
+    .textheaderki {
+        height: 50px;
+    }
+
+    .kinav {
+        height: 60px;
+        position: relative;
+    }
+
+    .userimagecont {
+        width: 30%;
+    }
+
+    .userimagecont img {
+        height: 50px;
+        width: 50px;
+    }
+
+    .kioptionscont {
+        width: 70%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding-right: 20px;
+    }
+
+    .buthamburg {
+        display: flex;
+        height: 30px;
+        width: 30px;
+    }
+
+    .barra {
+        background-color: white;
+        height: 3px;
+        width: 100%;
+        margin: 2px 0;
+    }
+
+    .optionsdefault {
+        display: none;
+    }
+
+    .optionscell {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgb(13, 196, 74);
+        padding: 20px 0;
+        z-index: 1000;
+    }
+
+    .optionscell.active {
+        display: block;
+    }
+
+    .optionscell li {
+        color: white;
+        padding: 15px 20px;
+        list-style: none;
+        text-align: center;
+        font-size: 1.1em;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .optionscell li:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .textheaderki h1 {
+        font-size: 1.2em;
+    }
+
+    .userimagecont img {
+        height: 40px;
+        width: 40px;
+    }
+
+    .buthamburg {
+        height: 25px;
+        width: 25px;
+    }
+}
+
