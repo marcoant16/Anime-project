@@ -114,7 +114,7 @@ userota.post('/upload-image', authenticate, upload.single('image'), async (req, 
             return res.status(400).json({ error: 'Nenhuma imagem enviada' });
         }
 
-        const imageUrl = `http://localhost:3000/uploads/profile/${req.file.filename}`;
+        const imageUrl = `/uploads/profile/${req.file.filename}`;
         
         await User.findByIdAndUpdate(req.user.id, {
             profileImage: imageUrl
