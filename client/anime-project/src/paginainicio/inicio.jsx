@@ -175,6 +175,13 @@ function Inicio(){
                 });
                 const userData = await userResponse.json();
                 if (userResponse.ok && userData.user) {
+                    // Garantir que a URL da imagem está completa
+                    if (userData.user.profileImage) {
+                        userData.user.profileImage = userData.user.profileImage.startsWith('http') 
+                            ? userData.user.profileImage 
+                            : `${API_URL}${userData.user.profileImage}`;
+                    }
+                    
                     setUserData(userData.user);
                     setIsLoggedIn(true);
                     // Atualizar a imagem do usuário no header
@@ -279,12 +286,18 @@ function Inicio(){
                     
                     const data = await response.json();
                     if (data.user) {
-                        // Modificar a URL da imagem do perfil para usar a API_URL
-                        if (data.user.profileImage && !data.user.profileImage.startsWith('http')) {
-                            data.user.profileImage = `${API_URL}${data.user.profileImage}`;
+                        // Garantir que a URL da imagem está completa
+                        if (data.user.profileImage) {
+                            // Se a URL já começa com http, mantém como está
+                            // Se não, adiciona a API_URL
+                            data.user.profileImage = data.user.profileImage.startsWith('http') 
+                                ? data.user.profileImage 
+                                : `${API_URL}${data.user.profileImage}`;
                         }
+                        
                         setUserData(data.user);
                         setIsLoggedIn(true);
+                        
                         // Atualizar a imagem do usuário no header
                         const userImage = document.getElementById('userimage');
                         if (userImage && data.user.profileImage) {
