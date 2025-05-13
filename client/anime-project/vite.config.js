@@ -10,5 +10,14 @@ export default defineConfig({
   plugins: [react()],
   build: {
     outDir: path.resolve(__dirname,'../../server/dist')
+  },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        secure: false
+      }
+    }
   }
 })

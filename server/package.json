@@ -4,7 +4,9 @@
   "main": "inicio.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon inicio.mjs"
+    "start": "node inicio.mjs",
+    "build": "npm install",
+    "dev": "nodemon inicio.mjs"
   },
   "keywords": [],
   "author": "marcos antonio(marazule)",
