@@ -974,6 +974,7 @@
 
 .remove-favorite:hover {
     background-color: transparent;
+    border-color: var(--cor10);
 }
 
 /* Estilos para o ícone de coração */
