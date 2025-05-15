@@ -779,7 +779,7 @@
 }
 
 .image-upload-label:hover {
-    background-color: #ff5252;
+    background-color:transparent;
 }
 
 .upload-icon {
@@ -787,7 +787,7 @@
 }
 
 .profile-info h2 {
-    color: #ff6b6b;
+    color:var(--cor9);
     margin-bottom: 0.5rem;
 }
 
@@ -796,8 +796,8 @@
 }
 
 .logout-button {
-    background-color: #ff6b6b;
-    color: white;
+    background-color: var(--cor10);
+    color: var(--cor1);
     border: none;
     padding: 12px;
     border-radius: 5px;
@@ -807,7 +807,7 @@
 }
 
 .logout-button:hover {
-    background-color: #ff5252;
+    background-color: var(--cor9);
 }
 
 .auth-content {
