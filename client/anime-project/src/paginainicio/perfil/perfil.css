@@ -1,0 +1,233 @@
+@charset "UTF-8";
+
+@import url('../cssglobal/variaveis.css');
+
+.profile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(25, 53, 25, 0.95);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-container {
+    background-color: var(--cor10);
+    padding: 2rem;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    color: var(--cor1);
+}
+
+.close-profile {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color:var(--cor1);
+    font-size: 44px;
+    cursor: pointer;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: 0.3s ease;
+}
+
+.close-profile:hover {
+    color:var(--cor3);
+}
+
+.profile-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.profile-header {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.profile-image-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.image-upload-label {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: var(--cor4);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.image-upload-label:hover {
+    background-color:transparent;
+    border: var(--cor4) ;
+}
+
+.upload-icon {
+    font-size: 20px;
+}
+
+.profile-info h2 {
+    color:var(--cor9);
+    margin-bottom: 0.5rem;
+}
+
+.profile-info p {
+    color: #ccc;
+}
+
+.logout-button {
+    background-color: var(--cor10);
+    color: var(--cor1);
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+    background-color: var(--cor9);
+}
+
+.auth-content {
+    padding: 1rem;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.auth-form h2 {
+    color:var(--cor6);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.auth-form input {
+    padding: 12px;
+    border: 2px solid var(--cor7);
+    border-radius: 5px;
+    background-color:#8ddf8d67;
+    color: var(--cor1);
+    font-size: 1rem;
+}
+
+.auth-form input:focus {
+    outline: none;
+    background-color: transparent;
+}
+
+.auth-form button[type="submit"] {
+    background-color: var(--cor5);
+    color: var(--cor1);
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    border: 2px solid var(--cor10);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.auth-form button[type="submit"]:hover {
+    background-color: var(--cor3);
+}
+
+.auth-form p {
+    text-align: center;
+    color: #ccc;
+    margin-top: 1rem;
+}
+
+.switch-auth {
+    background: none;
+    border: none;
+    color:var(--cor2);
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0;
+    margin-left: 0.5rem;
+}
+
+.switch-auth:hover {
+    text-decoration: underline;
+}
+
+.error-message {
+    background-color: rgba(255, 107, 107, 0.1);
+    color: rgb(255, 136, 0);
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+
+.profile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.logout-button, .delete-account-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.logout-button {
+    background-color: var(--cor5);
+    color: var(--cor1);
+}
+
+.logout-button:hover {
+    background-color: var(--cor3);
+}
+
+.delete-account-button {
+    background-color: var(--cor9);
+    color: var(--cor1);
+}
+
+.delete-account-button:hover {
+    background-color:rgb(1, 26, 6);
+}

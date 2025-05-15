@@ -1,0 +1,146 @@
+@charset "UTF-8";
+
+@import url('../cssglobal/variaveis.css');
+
+.search-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(122, 184, 142, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.search-container {
+    background-color: var(--cor10);
+    padding: 2em 1em;
+    border-radius: 5px;
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+}
+
+.close-search {
+    position: absolute;
+    top: -28px;
+    right: -17px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 20;
+}
+
+.search-bar {
+    display: flex;
+    gap: 10px;
+    margin-top: 1rem;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid var(--cor4);
+    border-radius: 5px;
+    background-color: var(--cor9);
+    color:var(--cor1);
+    font-size: 16px;
+}
+
+.search-bar input:focus {
+    outline: none;
+    background-color:transparent;
+}
+
+.search-button {
+    padding: 12px 24px;
+    background-color:var(--cor5);
+    border:2px solid var(--cor4);
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.8s ease;
+}
+
+.search-button:hover {
+    background-color:var(--cor9);
+    border-color:var(--cor4);
+}
+
+.search-button:hover .lupa{
+    fill:var(--cor7);
+}
+
+.search-results {
+    margin-top: 2rem;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.search-results::-webkit-scrollbar {
+    width: 8px;
+}
+
+.search-results::-webkit-scrollbar-track {
+    background: var(--cor7);
+    border-radius: 4px;
+}
+
+.search-results::-webkit-scrollbar-thumb {
+    background:var(--cor9);
+    border-radius: 4px;
+}
+
+.search-result-item {
+    display: flex;
+    background-color:rgb(0, 22, 0);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.search-result-item:hover {
+    transform: translateY(-2px);
+}
+
+.search-result-image {
+    width: 150px;
+    min-width: 150px;
+    height: 200px;
+    background-color: #333333;
+}
+
+.search-result-info {
+    padding: 1rem;
+    flex: 1;
+}
+
+.search-result-info h3 {
+    color: var(--cor1);
+    margin: 0 0 0.5rem 0;
+    font-size: 1.2rem;
+}
+
+.search-result-info p {
+    color: #ccc;
+    margin: 0 0 1rem 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.search-result-details {
+    display: flex;
+    gap: 1rem;
+}
+
+.search-result-details span {
+    color: var(--cor6);
+    font-size: 0.9rem;
+}
