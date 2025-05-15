@@ -731,7 +731,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    transition: color 0.3s ease;
+    transition: 0.3s ease;
 }
 
 .close-profile:hover {
@@ -821,38 +821,39 @@
 }
 
 .auth-form h2 {
-    color: #ff6b6b;
+    color:var(--cor6);
     text-align: center;
     margin-bottom: 1rem;
 }
 
 .auth-form input {
     padding: 12px;
-    border: 2px solid #333;
+    border: 2px solid var(--cor7);
     border-radius: 5px;
-    background-color: #2a2a2a;
-    color: white;
+    background-color:#8ddf8d67;
+    color: var(--cor1);
     font-size: 1rem;
 }
 
 .auth-form input:focus {
     outline: none;
-    border-color: #ff6b6b;
+    background-color: transparent;
 }
 
 .auth-form button[type="submit"] {
-    background-color: #ff6b6b;
-    color: white;
+    background-color: var(--cor5);
+    color: var(--cor1);
     border: none;
     padding: 12px;
     border-radius: 5px;
+    border: 2px solid var(--cor10);
     cursor: pointer;
     font-size: 1rem;
     transition: background-color 0.3s;
 }
 
 .auth-form button[type="submit"]:hover {
-    background-color: #ff5252;
+    background-color: var(--cor3);
 }
 
 .auth-form p {
@@ -864,7 +865,7 @@
 .switch-auth {
     background: none;
     border: none;
-    color: #ff6b6b;
+    color:var(--cor2);
     cursor: pointer;
     font-size: 1rem;
     padding: 0;
@@ -877,7 +878,7 @@
 
 .error-message {
     background-color: rgba(255, 107, 107, 0.1);
-    color: #ff6b6b;
+    color: rgb(255, 136, 0);
     padding: 1rem;
     border-radius: 5px;
     margin-bottom: 1rem;
