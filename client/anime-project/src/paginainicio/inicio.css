@@ -775,11 +775,12 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
 }
 
 .image-upload-label:hover {
     background-color:transparent;
+    border: var(--cor4) ;
 }
 
 .upload-icon {
@@ -892,7 +893,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(35, 43, 33, 0.712);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -900,7 +901,7 @@
 }
 
 .favorites-container {
-    background-color: #fff;
+    background-color:var(--cor9);
     padding: 2rem;
     border-radius: 10px;
     width: 90%;
@@ -918,7 +919,7 @@
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
-    color: #333;
+    color: var(--cor2);
 }
 
 .favorites-grid {
@@ -929,7 +930,7 @@
 }
 
 .favorite-card {
-    background-color: #f5f5f5;
+    background-color: var(--cor6);
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -961,13 +962,14 @@
 
 .remove-favorite {
     background-color: var(--cor6);
-    color: white;
+    border: 2px solid  var(--cor6);
+    color: var(--cor1);
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 4px;
     cursor: pointer;
     font-size: 0.9rem;
-    transition: background-color 0.2s;
+    transition: all 0.2s ease;
 }
 
 .remove-favorite:hover {
