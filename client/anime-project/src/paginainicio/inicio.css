@@ -961,8 +961,8 @@
 }
 
 .remove-favorite {
-    background-color: var(--cor6);
-    border: 2px solid  var(--cor6);
+    background-color: var(--cor10);
+    border: 2px solid  var(--cor10);
     color: var(--cor1);
     border: none;
     padding: 0.5rem 1rem;
