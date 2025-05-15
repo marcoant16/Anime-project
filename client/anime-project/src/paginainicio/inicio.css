@@ -960,7 +960,7 @@
 }
 
 .remove-favorite {
-    background-color: #ff4444;
+    background-color: var(--cor6);
     color: white;
     border: none;
     padding: 0.5rem 1rem;
@@ -971,7 +971,7 @@
 }
 
 .remove-favorite:hover {
-    background-color: #cc0000;
+    background-color: transparent;
 }
 
 /* Estilos para o ícone de coração */
@@ -985,8 +985,8 @@
 }
 
 .heart-icon.favorited {
-    fill: red;
-    stroke: red;
+    fill: var(--cor4);
+    stroke: var(--cor3);
 }
 
 .profile-actions {
@@ -1008,19 +1008,19 @@
 }
 
 .logout-button {
-    background-color: #ff6b6b;
-    color: white;
+    background-color: var(--cor5);
+    color: var(--cor1);
 }
 
 .logout-button:hover {
-    background-color: #ff5252;
+    background-color: var(--cor3);
 }
 
 .delete-account-button {
-    background-color: #dc3545;
-    color: white;
+    background-color: var(--cor9);
+    color: var(--cor1);
 }
 
 .delete-account-button:hover {
-    background-color: #c82333;
+    background-color:rgb(1, 26, 6);
 }
