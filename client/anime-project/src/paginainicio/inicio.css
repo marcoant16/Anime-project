@@ -950,7 +950,7 @@
 .favorite-info h3 {
     margin: 0 0 0.5rem 0;
     font-size: 1.2rem;
-    color: #333;
+    color: var(--cor5);
 }
 
 .favorite-info p {
@@ -974,7 +974,7 @@
 
 .remove-favorite:hover {
     background-color: transparent;
-    border-color: var(--cor10);
+    border-color: var(--cor8);
 }
 
 /* Estilos para o ícone de coração */
