@@ -6,6 +6,10 @@ import { API_URL } from '../config';
 
 //svg
 import Heart from "../svgglobal/heart/heart";
+import Lupa from "../svgglobal/pesquisa/lupa";
+import Seta from "../svgglobal/seta/seta";
+import Sakura from "../svgglobal/sakura/sakura";
+import X from "../svgglobal/x/x";
 
 function Inicio(){
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -407,7 +411,7 @@ function Inicio(){
           <section className="kiana">
               <header className="kianaheader">
                   <div className="textheaderki">
-                      <h1>gaystation</h1>
+                      <h1>Anime Favorite</h1>
                   </div>
 
                   <nav className="kinav">
@@ -423,15 +427,15 @@ function Inicio(){
                           </div>
 
                           <ul className="optionsdefault">
-                             <li onClick={toggleProfile}>View profile</li>
-                             <li onClick={loadFavorites}>Favorites</li>
-                             <li className="libusc" onClick={toggleSearch}><span className="spabusc"></span></li>
+                             <li className="libs" onClick={toggleProfile}>View profile</li>
+                             <li className="libs" onClick={loadFavorites}>Favorites</li>
+                             <li className="libusc" onClick={toggleSearch}><span className="spabusc"><Lupa/></span></li>
                           </ul>
 
                           <ul className={`optionscell ${isMenuOpen ? 'active' : ''}`}>
-                             <li onClick={toggleProfile}>View profile</li>
-                             <li onClick={loadFavorites}>Favorites</li>
-                             <li className="libusc" onClick={toggleSearch}><span className="spabusc"></span></li>
+                             <li className="libs" onClick={toggleProfile}>View profile</li>
+                             <li className="libs" onClick={loadFavorites}>Favorites</li>
+                             <li className="libusc" onClick={toggleSearch}><span className="spabusc"><Lupa/></span></li>
                           </ul>
                       </div>
                   </nav>
@@ -446,24 +450,28 @@ function Inicio(){
                     <div className="cardscfamslider" ref={sliderRef}>
                         {animeTitles.map((title, index) => (
                             <div className="card" key={index}>
-                                <div className="cardimagecont" style={{backgroundImage: `url(${animeImages[index] || "https://ih1.redbubble.net/image.5509038997.5349/flat,750x1000,075,t.u1.jpg"})`,backgroundSize: 'cover',backgroundPosition: 'center'}}></div>
-                                <div className="cardinfo1">
-                                    <h2 className="cardname1">{title}</h2>
-                                    <span className="cardexpandir" onClick={() => toggleCardExpand(index)}>clique</span>
+                                <div className="indicardcont">
+                                    <div className="cardimagecont" style={{backgroundImage: `url(${animeImages[index] || "https://ih1.redbubble.net/image.5509038997.5349/flat,750x1000,075,t.u1.jpg"})`,backgroundSize: 'cover',backgroundPosition: 'center'}}></div>
+                                    <div className="cardinfo1">
+                                        <h2 className="cardname1">{title}</h2>
+                                        <span className="cardexpandir" onClick={() => toggleCardExpand(index)}><Seta/></span>
+                                    </div>
                                 </div>
                             </div>
                         ))}
                     </div>
 
                     <div className="cardscfamsliderpontos">
-                        {[...Array(totalSlides)].map((_, index) => (<span  key={index} className={`butslider ${currentSlide === index ? 'active' : ''}`} onClick={() => goToSlide(index)}/>))}
+                        <div className="pontlineslider">
+                            {[...Array(totalSlides)].map((_, index) => (<span  key={index} className={`butslider ${currentSlide === index ? 'active' : ''}`} onClick={() => goToSlide(index)}><Sakura/></span>))}
+                        </div>
                     </div>
                   </div>
 
                   {expandedCard !== null && (
                     <div className="cardinfo2-overlay">
+                        <button className="close-button xclose" onClick={() => setExpandedCard(null)}><X/></button>
                         <div className={`cardinfo2 active`}>
-                            <button className="close-button" onClick={() => setExpandedCard(null)}>×</button>
                             <div className="cardframecont">
                                 <iframe className="cari2frame" src={animeYoutube[expandedCard] || "https://www.youtube.com/embed/CmCIZ_aUAeQ?si=WoXAXCNFAfA5pNlG"} title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen/>
                             </div>
@@ -485,16 +493,7 @@ function Inicio(){
                                 </div>
                                 
                                 <div className="carin2avalicont">
-                                    <Heart animeData={{
-                                        mal_id: animeTitles[expandedCard],
-                                        title: animeTitles[expandedCard],
-                                        images: {
-                                            jpg: {
-                                                large_image_url: animeImages[expandedCard]
-                                            }
-                                        },
-                                        synopsis: animeSinopse[expandedCard]
-                                    }}/>
+                                    <Heart animeData={{mal_id: animeTitles[expandedCard],title: animeTitles[expandedCard],images: {jpg: {large_image_url: animeImages[expandedCard]}},synopsis: animeSinopse[expandedCard]}}/>
                                 </div>
                             </div>
                         </div>
@@ -504,11 +503,11 @@ function Inicio(){
                   {isSearchOpen && (
                     <div className="search-overlay">
                         <div className="search-container">
-                            <button className="close-search" onClick={toggleSearch}>×</button>
+                            <button className="close-search xclose" onClick={toggleSearch}><X/></button>
 
                             <div className="search-bar">
                                 <input  type="text" placeholder="Pesquisar..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} onKeyUp={handleKeyPress}/>
-                                <button className="search-button" onClick={handleSearch}>Buscar</button>
+                                <button className="search-button" onClick={handleSearch}><Lupa/></button>
                             </div>
 
                             <div className="search-results">
@@ -520,8 +519,8 @@ function Inicio(){
                                             <h3>{anime.title}</h3>
                                             <p>{anime.synopsis?.substring(0, 150)}...</p>
                                             <div className="search-result-details">
-                                                <span>Nota: {anime.score}</span>
-                                                <span>Episódios: {anime.episodes}</span>
+                                                <span>Nota: {anime.score || "Unknown"}</span>
+                                                <span>Episódios: {anime.episodes || "Unknown"}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -534,7 +533,7 @@ function Inicio(){
                   {selectedAnime && (
                     <div className="anime-details-overlay">
                         <div className="anime-details-container">
-                            <button className="close-details" onClick={closeAnimeDetails}>×</button>
+                            <button className="close-details" onClick={closeAnimeDetails}><X/></button>
                             
                             <div className="anime-details-header">
                                 <div className="anime-details-image" style={{backgroundImage: `url(${selectedAnime.images.jpg.large_image_url})`, backgroundSize: 'cover',backgroundPosition: 'center' }}/>
@@ -543,10 +542,10 @@ function Inicio(){
                                     <h2>{selectedAnime.title}</h2>
 
                                     <div className="anime-details-stats">
-                                        <span className="anime-score">Nota: {selectedAnime.score}</span>
-                                        <span className="anime-episodes">Episódios: {selectedAnime.episodes}</span>
-                                        <span className="anime-year">Ano: {selectedAnime.year}</span>
-                                        <span className="anime-status">Status: {selectedAnime.status}</span>
+                                        <span className="anime-score">Score: {selectedAnime.score || "unknown"}</span>
+                                        <span className="anime-episodes">Episodes: {selectedAnime.episodes || "unknown"}</span>
+                                        <span className="anime-year">Year: {selectedAnime.year || "unknown"}</span>
+                                        <span className="anime-status">Status: {selectedAnime.status || "unknown"}</span>
                                     </div>
 
                                     <Heart animeData={selectedAnime}/>
@@ -555,23 +554,19 @@ function Inicio(){
 
                             <div className="anime-details-content">
                                 <div className="anime-trailer">
-                                    {selectedAnime.trailer?.embed_url ? (
-                                        <iframe  src={selectedAnime.trailer.embed_url} title="Trailer" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen/>
-                                    ) : (
-                                        <div className="no-trailer">Trailer não disponível</div>
-                                    )}
+                                   <iframe  src={selectedAnime.trailer.embed_url || "https://www.youtube.com/embed/CmCIZ_aUAeQ?si=WoXAXCNFAfA5pNlG"} title="Trailer" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen/>
                                 </div>
 
                                 <div className="anime-synopsis">
                                     <h3>Sinopse</h3>
-                                    <p>{selectedAnime.synopsis}</p>
+                                    <p>{selectedAnime.synopsis || "unknown"}</p>
                                 </div>
 
                                 <div className="anime-genres">
-                                    <h3>Gêneros</h3>
+                                    <h3>Genders</h3>
                                     <div className="genre-tags">
                                         {selectedAnime.genres?.map((genre, index) => (
-                                            <span key={index} className="genre-tag">{genre.name}</span>
+                                            <span key={index} className="genre-tag">{genre.name || "unknown"}</span>
                                         ))}
                                     </div>
                                 </div>

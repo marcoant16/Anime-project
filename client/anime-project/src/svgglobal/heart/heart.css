@@ -1,23 +1,13 @@
 @charset "UTF-8";
+@import url('../../cssglobal/variaveis.css');
 
 #heartsvg{
     width:54px;
     height: 47px;
+    stroke: var(--cor3);
+    transition: 0.8s ease;
 }
 
-.heartmask{
-    fill: white;
-}
-
-.heartpath{
-    fill: #135646;
-    cursor: pointer;
-}
-
-#heartstop1{
-    stop-color: #099C52;
-}
-
-#heartstop1{
-    stop-color: #1FD756;
+#heartsvg:hover{
+    fill: var(--cor4);
 }
