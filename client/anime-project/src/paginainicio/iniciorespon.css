@@ -127,6 +127,11 @@
         padding: 8px 14px;;
     }
 
+
+    .close-details{
+        top: -1px;
+    }
+
 }
 
 @media screen and (max-width: 480px) {
@@ -154,6 +159,11 @@
     .cardexpandir {
         margin-right: 17px;
         cursor: pointer;
+    }
+
+    .profile-container{
+        width: 80vh;
+        max-width: 270px;
     }
 
 }
@@ -200,6 +210,10 @@
     
     .close-search{
         bottom: 80%;
+    }
+    
+    .profile-container{
+        height: 70vh;
     }
 }
 
