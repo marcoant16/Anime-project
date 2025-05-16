@@ -253,6 +253,14 @@
     }
 }
 
+@media screen and (max-height:480px){
+    .cardinfo2minicont2{
+        flex-direction: row;
+        font-size: 0.8em;
+    }
+
+}
+
 /**/
 
 
@@ -267,3 +275,100 @@
 
 
 /**/
+
+/* Media query para landscape em celulares */
+@media screen and (max-height: 480px) and (orientation: landscape) {
+    .profile-container {
+        width: 90vw;
+        max-width: 800px;
+        height: 90vh;
+        max-height: 400px;
+    }
+
+    .profile-content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+        height: 100%;
+    }
+
+    .profile-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+        width: 60%;
+    }
+
+    .profile-image-container {
+        width: 120px;
+        height: 120px;
+    }
+
+    .profile-image {
+        width: 120px;
+        height: 120px;
+    }
+
+    .profile-info {
+        text-align: left;
+    }
+
+    .profile-info h2 {
+        font-size: 1.5em;
+        margin-bottom: 5px;
+    }
+
+    .profile-info p {
+        font-size: 1em;
+    }
+
+    .profile-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 30%;
+    }
+
+    .logout-button,
+    .delete-account-button {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+
+    .auth-content {
+        padding: 15px;
+    }
+
+    .auth-form {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .auth-form h2 {
+        font-size: 1.5em;
+        margin-bottom: 15px;
+    }
+
+    .auth-form input {
+        padding: 8px;
+        margin-bottom: 10px;
+    }
+
+    .auth-form button {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+
+    .switch-auth {
+        font-size: 0.9em;
+        padding: 5px 10px;
+    }
+
+    .error-message {
+        font-size: 0.9em;
+        margin-bottom: 10px;
+    }
+}
