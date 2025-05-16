@@ -433,9 +433,9 @@ function Inicio(){
                           </ul>
 
                           <ul className={`optionscell ${isMenuOpen ? 'active' : ''}`}>
-                             <li className="libs" onClick={toggleProfile}>View profile</li>
-                             <li className="libs" onClick={loadFavorites}>Favorites</li>
-                             <li className="libusc" onClick={toggleSearch}><span className="spabusc"><Lupa/></span></li>
+                             <li className="libs libscell" onClick={toggleProfile}>View profile</li>
+                             <li className="libs libscell" onClick={loadFavorites}>Favorites</li>
+                             <li className="libusc libuscell" onClick={toggleSearch}><span className="spabusc"><Lupa/></span></li>
                           </ul>
                       </div>
                   </nav>
