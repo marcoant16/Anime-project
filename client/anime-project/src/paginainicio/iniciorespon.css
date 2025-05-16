@@ -335,7 +335,8 @@
 
     .logout-button,
     .delete-account-button {
-        padding: 28px 65px;
+        width: 30%;
+        height: 60px;
         font-size: 0.9em;
     }
 
