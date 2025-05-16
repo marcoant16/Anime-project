@@ -443,7 +443,7 @@ function Inicio(){
 
               <div id="carfamocont" className="cardscont">
                   <div className="carfamotextcont">
-                    <h2>Famous Animes</h2>
+                    <h2>Top rated animes</h2>
                   </div>
 
                   <div className="cardscfam">

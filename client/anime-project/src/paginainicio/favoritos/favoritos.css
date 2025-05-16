@@ -87,10 +87,11 @@
     border-radius: 4px;
     cursor: pointer;
     font-size: 0.9rem;
-    transition: all 0.2s ease;
+    transition:0.2s ease;
 }
 
 .remove-favorite:hover {
     background-color: var(--cor7);
     border-color: var(--cor8);
+    color: var(--cor2);
 }

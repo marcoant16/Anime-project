@@ -18,7 +18,7 @@
     background-color:var(--cor4);
     height: 60%;
     width: 100%;
-    color:var(--cor7);
+    color:var(--cor1);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,11 +42,14 @@
     width: 100px;
     min-width: 80px;
     margin-left: 15px;
+    border: 2px solid var(--cor7);
+    border-radius: 50%;
 }
 
 .userimagecont img{
     height: 100%;
     width: 100%;
+    border-radius: 50%;
 }
 
 .kioptionscont{
@@ -73,7 +76,7 @@
     height: 3px;
     border-radius: 4px;
     width: 100%;
-    background-color: white;
+    background-color: var(--cor1);
     transition: 0.3s ease;
 }
 
@@ -160,8 +163,10 @@
 
 .carfamotextcont h2 {
     font-size: 2em;
+    font-weight: 600;
     margin-left: 15px;
-    color: var(--cor1);
+    color: rgb(3, 17, 1);
+    
 }
 
 .cardscfam {
