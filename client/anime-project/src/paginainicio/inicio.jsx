@@ -693,7 +693,7 @@ function Inicio(){
                     <div className="favorites-overlay">
                         <div className="favorites-container">
                             <button className="close-favorites" onClick={() => setIsFavoritesOpen(false)}>×</button>
-                            <h2>Meus Favoritos</h2>
+                            <h2 id="favh2">Meus Favoritos</h2>
                             <div className="favorites-grid">
                                 {favorites.map((favorite) => (
                                     <div key={favorite._id} className="favorite-card">

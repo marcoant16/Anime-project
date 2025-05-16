@@ -15,7 +15,7 @@
 }
 
 .favorites-container {
-    background-color:var(--cor9);
+    background-color:var(--cor10);
     padding: 2rem;
     border-radius: 10px;
     width: 90%;
@@ -34,6 +34,10 @@
     font-size: 1.5rem;
     cursor: pointer;
     color: var(--cor2);
+}
+
+#favh2{
+    color: var(--cor6);
 }
 
 .favorites-grid {
@@ -64,7 +68,7 @@
 .favorite-info h3 {
     margin: 0 0 0.5rem 0;
     font-size: 1.2rem;
-    color: var(--cor5);
+    color: var(--cor9);
 }
 
 .favorite-info p {
@@ -87,6 +91,6 @@
 }
 
 .remove-favorite:hover {
-    background-color: transparent;
+    background-color: var(--cor6);
     border-color: var(--cor8);
 }
