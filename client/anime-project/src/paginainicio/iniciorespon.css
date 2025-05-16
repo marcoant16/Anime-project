@@ -264,18 +264,6 @@
 /**/
 
 
-
-/*media exclusivas para larguras e alturas*/
-
-
-/**/
-
-
-/*media exclusivas para tablets e celulares*/
-
-
-/**/
-
 /*para landscape em celulares */
 @media screen and (max-height: 480px) and (orientation: landscape) {
     .profile-container {
@@ -372,5 +360,102 @@
     .error-message {
         font-size: 0.9em;
         margin-bottom: 2px;
+    }
+}
+
+
+/* Desabilitar hovers em dispositivos móveis */
+@media (hover: none) {
+    /* Elementos do header */
+    .libscell:hover,
+    .libscell:hover {
+        background-color: transparent;
+    }
+
+    .libusc:hover {
+        background-color: rgb(13, 196, 74);
+    }
+
+    .libusc:hover .lupa {
+        fill: var(--cor9);
+    }
+
+    .lupa:hover {
+        background-color: var(--cor8);
+    }
+
+    /* Elementos dos cards */
+    .card:hover {
+        transform: none;
+    }
+
+    .cardexpandir:hover {
+        transform: none;
+    }
+
+    /* Elementos de pesquisa */
+    .search-result-item:hover {
+        transform: none;
+        background-color: transparent;
+    }
+
+    .search-button:hover {
+        background-color: transparent;
+    }
+
+    /* Elementos do perfil */
+    .profile-image-container:hover .upload-icon {
+        opacity: 0;
+    }
+
+    .logout-button:hover,
+    .delete-account-button:hover {
+        background-color: var(--cor8);
+        transform: none;
+    }
+
+    .switch-auth:hover {
+        background-color: transparent;
+        text-decoration: none;
+    }
+
+    /* Elementos dos favoritos */
+    .favorite-card:hover {
+        transform: none;
+    }
+
+    .remove-favorite:hover {
+        background-color: var(--cor8);
+        transform: none;
+    }
+
+    /* Elementos do coração */
+    #heartsvg:hover {
+        transform: none;
+    }
+
+    /* Elementos dos detalhes do anime */
+    .anime-details-container button:hover {
+        background-color: transparent;
+        transform: none;
+    }
+
+    .genre-tag:hover {
+        background-color: var(--cor8);
+        transform: none;
+    }
+
+    /* Elementos gerais */
+    button:hover {
+        transform: none;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    /* Desabilitar transições em dispositivos móveis */
+    * {
+        transition: none !important;
     }
 }
