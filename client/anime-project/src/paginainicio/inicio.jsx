@@ -82,28 +82,74 @@ function Inicio(){
         setCurrentSlide(index);
     };
 
-    // Efeito para o slider automático
+    // Efeito para o slider automático e atualização da posição
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % totalSlides);
         }, 12000);
 
-        return () => clearInterval(interval);
-    }, []);
-
-    // Efeito para atualizar a posição do slider
-    useEffect(() => {
+        // Atualiza a posição do slider quando currentSlide mudar
         if (sliderRef.current) {
             sliderRef.current.style.transform = `translateX(-${currentSlide * 100}%)`;
         }
-    }, [currentSlide]);
 
-    // Efeito para carregar os animes
+        return () => clearInterval(interval);
+    }, [currentSlide, totalSlides]);
+
+    // Efeito para carregar os animes e verificar login
     useEffect(() => {
-        pegar();
-    }, []);
+        const initializeApp = async () => {
+            // Carregar animes
+            await pegar();
+            
+            // Verificar status do login
+            const token = localStorage.getItem('token');
+            if (token) {
+                try {
+                    const response = await fetch(`${API_URL}/api/users/me`, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+                    
+                    if (!response.ok) {
+                        throw new Error('Erro ao verificar login');
+                    }
+                    
+                    const data = await response.json();
+                    if (data.user) {
+                        // Garantir que a URL da imagem está completa
+                        if (data.user.profileImage) {
+                            data.user.profileImage = data.user.profileImage.startsWith('http') 
+                                ? data.user.profileImage 
+                                : `${API_URL}${data.user.profileImage}`;
+                        }
+                        
+                        setUserData(data.user);
+                        setIsLoggedIn(true);
+                        
+                        // Atualizar a imagem do usuário no header
+                        const userImage = document.getElementById('userimage');
+                        if (userImage && data.user.profileImage) {
+                            userImage.src = data.user.profileImage;
+                        }
+                    }
+                } catch (error) {
+                    console.error('Erro ao verificar login:', error);
+                    localStorage.removeItem('token');
+                    setUserData(null);
+                    setIsLoggedIn(false);
+                    // Resetar a imagem do usuário para a padrão em caso de erro
+                    const userImage = document.getElementById('userimage');
+                    if (userImage) {
+                        userImage.src = "https://ih1.redbubble.net/image.5509038997.5349/flat,750x1000,075,t.u1.jpg";
+                    }
+                }
+            }
+        };
 
-    ///////////
+        initializeApp();
+    }, []);
 
     ///pegar animes famosos///
     async function pegar(){
@@ -271,59 +317,6 @@ function Inicio(){
             console.error(error);
         }
     };
-
-    // Verificar login ao carregar a página
-    useEffect(() => {
-        const checkLoginStatus = async () => {
-            const token = localStorage.getItem('token');
-            if (token) {
-                try {
-                    const response = await fetch(`${API_URL}/api/users/me`, {
-                        headers: {
-                            'Authorization': `Bearer ${token}`
-                        }
-                    });
-                    
-                    if (!response.ok) {
-                        throw new Error('Erro ao verificar login');
-                    }
-                    
-                    const data = await response.json();
-                    if (data.user) {
-                        // Garantir que a URL da imagem está completa
-                        if (data.user.profileImage) {
-                            // Se a URL já começa com http, mantém como está
-                            // Se não, adiciona a API_URL
-                            data.user.profileImage = data.user.profileImage.startsWith('http') 
-                                ? data.user.profileImage 
-                                : `${API_URL}${data.user.profileImage}`;
-                        }
-                        
-                        setUserData(data.user);
-                        setIsLoggedIn(true);
-                        
-                        // Atualizar a imagem do usuário no header
-                        const userImage = document.getElementById('userimage');
-                        if (userImage && data.user.profileImage) {
-                            userImage.src = data.user.profileImage;
-                        }
-                    }
-                } catch (error) {
-                    console.error('Erro ao verificar login:', error);
-                    localStorage.removeItem('token');
-                    setUserData(null);
-                    setIsLoggedIn(false);
-                    // Resetar a imagem do usuário para a padrão em caso de erro
-                    const userImage = document.getElementById('userimage');
-                    if (userImage) {
-                        userImage.src = "https://ih1.redbubble.net/image.5509038997.5349/flat,750x1000,075,t.u1.jpg";
-                    }
-                }
-            }
-        };
-
-        checkLoginStatus();
-    }, []);
 
     // Função para carregar os favoritos
     const loadFavorites = async () => {

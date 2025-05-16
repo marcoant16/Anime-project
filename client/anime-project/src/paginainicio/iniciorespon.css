@@ -299,13 +299,11 @@
         align-items: center;
         gap: 20px;
         width: 60%;
-        background-color: brown;
     }
 
     .profile-image-container {
         width: 160px;
         height: 160px;
-        background-color: aqua;
     }
 
     .profile-image {
@@ -331,7 +329,6 @@
         flex-direction: column;
         gap: 10px;
         width: 50%;
-        background-color: azure;
     }
 
     .logout-button,
