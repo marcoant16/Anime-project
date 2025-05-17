@@ -21,6 +21,7 @@ function Inicio(){
     const [animeNota,setAnimeNota] = useState([]);
     const [animeAno,setAnimeAno] = useState([]);
     const [animeEp,setAnimeEp] = useState([]);
+    const [animeMalIds, setAnimeMalIds] = useState([]);
     const [expandedCard, setExpandedCard] = useState(null);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [searchResults, setSearchResults] = useState([]);
@@ -156,7 +157,6 @@ function Inicio(){
         try {
             const resposta = await fetch('https://api.jikan.moe/v4/top/anime');
             const resp = await resposta.json();
-            console.log(resp)
             
             // Gerar 3 índices aleatórios diferentes (excluindo o 0)
             const indices = [0]; // Começa com o índice 0
@@ -176,6 +176,7 @@ function Inicio(){
             const nota = indices.map(index => resp.data[index].score);
             const ano = indices.map(index => resp.data[index].year);
             const ep = indices.map(index => resp.data[index].episodes);
+            const malIds = indices.map(index => resp.data[index].mal_id); // Adicionando mal_id
             
             setAnimeTitles(titles);
             setAnimeImages(images);
@@ -185,6 +186,7 @@ function Inicio(){
             setAnimeNota(nota);
             setAnimeAno(ano);
             setAnimeEp(ep);
+            setAnimeMalIds(malIds); // Novo state para armazenar mal_ids
             
         } catch (error) {
             console.error(`Deu erro:${error.message},verifique:${error.stack}`)
@@ -487,7 +489,7 @@ function Inicio(){
                                 
                                 <div className="carin2avalicont">
                                     <Heart animeData={{
-                                        mal_id: expandedCard,
+                                        mal_id: animeMalIds[expandedCard], // Usando o mal_id real do anime
                                         title: animeTitles[expandedCard],
                                         images: {
                                             jpg: {
