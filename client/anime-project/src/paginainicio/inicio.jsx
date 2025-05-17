@@ -486,7 +486,20 @@ function Inicio(){
                                 </div>
                                 
                                 <div className="carin2avalicont">
-                                    <Heart animeData={{mal_id: animeTitles[expandedCard],title: animeTitles[expandedCard],images: {jpg: {large_image_url: animeImages[expandedCard]}},synopsis: animeSinopse[expandedCard]}}/>
+                                    <Heart animeData={{
+                                        mal_id: expandedCard,
+                                        title: animeTitles[expandedCard],
+                                        images: {
+                                            jpg: {
+                                                large_image_url: animeImages[expandedCard]
+                                            }
+                                        },
+                                        synopsis: animeSinopse[expandedCard],
+                                        score: animeNota[expandedCard],
+                                        episodes: animeEp[expandedCard],
+                                        year: animeAno[expandedCard],
+                                        genres: [{ name: animeGenero[expandedCard] }]
+                                    }}/>
                                 </div>
                             </div>
                         </div>
