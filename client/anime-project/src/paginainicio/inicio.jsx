@@ -3,6 +3,7 @@ import "../paginainicio/inicio.css"
 import "../paginainicio/iniciorespon.css"
 import { useState, useEffect, useRef } from "react"
 import { API_URL } from '../config';
+import ConfirmModal from '../components/ConfirmModal';
 
 //svg
 import Heart from "../svgglobal/heart/heart";
@@ -37,6 +38,7 @@ function Inicio(){
     const [isLoading, setIsLoading] = useState(false);
     const [favorites, setFavorites] = useState([]);
     const [isFavoritesOpen, setIsFavoritesOpen] = useState(false);
+    const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
     /////slide//////
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -379,37 +381,40 @@ function Inicio(){
         }
     };
 
-    const handleDeleteAccount = async () => {
-        if (window.confirm('Tem certeza que deseja deletar sua conta? Esta ação não pode ser desfeita.')) {
-            try {
-                const response = await fetch(`${API_URL}/api/users/delete-account`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('token')}`
-                    }
-                });
+    const handleDeleteAccount = () => {
+        setIsConfirmOpen(true);
+    };
 
-                if (response.ok) {
-                    // Limpar dados locais
-                    localStorage.removeItem('token');
-                    setUserData(null);
-                    setIsLoggedIn(false);
-                    // Resetar a imagem do usuário para a padrão
-                    const userImage = document.getElementById('userimage');
-                    if (userImage) {
-                        userImage.src = "https://ih1.redbubble.net/image.5509038997.5349/flat,750x1000,075,t.u1.jpg";
-                    }
-                    // Fechar o perfil
-                    setIsProfileOpen(false);
-                    alert('Conta deletada com sucesso');
-                } else {
-                    const data = await response.json();
-                    alert(data.error || 'Erro ao deletar conta');
+    const confirmDeleteAccount = async () => {
+        setIsConfirmOpen(false);
+        try {
+            const response = await fetch(`${API_URL}/api/users/delete-account`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
-            } catch (error) {
-                console.error('Erro ao deletar conta:', error);
-                alert('Erro ao deletar conta');
+            });
+
+            if (response.ok) {
+                // Limpar dados locais
+                localStorage.removeItem('token');
+                setUserData(null);
+                setIsLoggedIn(false);
+                // Resetar a imagem do usuário para a padrão
+                const userImage = document.getElementById('userimage');
+                if (userImage) {
+                    userImage.src = "https://ih1.redbubble.net/image.5509038997.5349/flat,750x1000,075,t.u1.jpg";
+                }
+                // Fechar o perfil
+                setIsProfileOpen(false);
+                alert('Conta deletada com sucesso');
+            } else {
+                const data = await response.json();
+                alert(data.error || 'Erro ao deletar conta');
             }
+        } catch (error) {
+            console.error('Erro ao deletar conta:', error);
+            alert('Erro ao deletar conta');
         }
     };
 
@@ -795,6 +800,13 @@ function Inicio(){
 
               </div>
           </section> 
+          <ConfirmModal
+            isOpen={isConfirmOpen}
+            title="Deletar Conta"
+            message="Tem certeza que deseja deletar sua conta? Esta ação não pode ser desfeita."
+            onConfirm={confirmDeleteAccount}
+            onCancel={() => setIsConfirmOpen(false)}
+        />
         </>
     )
 }
