@@ -3,6 +3,7 @@ import "../paginainicio/inicio.css"
 import "../paginainicio/iniciorespon.css"
 import { useState, useEffect, useRef } from "react"
 import { API_URL } from '../config';
+import Modal from '../components/Modal';
 
 //svg
 import Heart from "../svgglobal/heart/heart";
@@ -44,6 +45,18 @@ function Inicio(){
     const [touchEnd, setTouchEnd] = useState(null);
     const sliderRef = useRef(null);
     const totalSlides = 4;
+
+    // Estado do modal customizado
+    const [modal, setModal] = useState({
+        isOpen: false,
+        title: '',
+        message: '',
+        type: 'alert',
+        onConfirm: null,
+        onClose: null,
+        confirmText: 'OK',
+        cancelText: 'Cancelar',
+    });
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -357,7 +370,7 @@ function Inicio(){
     // Função para carregar os favoritos
     const loadFavorites = async () => {
         if (!isLoggedIn) {
-            alert('Por favor, faça login para ver seus favoritos');
+            showAlert('Por favor, faça login para ver seus favoritos');
             return;
         }
 
@@ -375,42 +388,46 @@ function Inicio(){
             }
         } catch (error) {
             console.error('Erro ao carregar favoritos:', error);
-            alert('Erro ao carregar favoritos');
+            showAlert('Erro ao carregar favoritos');
         }
     };
 
     const handleDeleteAccount = async () => {
-        if (window.confirm('Tem certeza que deseja deletar sua conta? Esta ação não pode ser desfeita.')) {
-            try {
-                const response = await fetch(`${API_URL}/api/users/delete-account`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('token')}`
-                    }
-                });
+        showConfirm(
+            'Tem certeza que deseja deletar sua conta? Esta ação não pode ser desfeita.',
+            'Confirmação',
+            async () => {
+                try {
+                    const deleteResponse = await fetch(`${API_URL}/api/users/delete-account`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        }
+                    });
 
-                if (response.ok) {
-                    // Limpar dados locais
-                    localStorage.removeItem('token');
-                    setUserData(null);
-                    setIsLoggedIn(false);
-                    // Resetar a imagem do usuário para a padrão
-                    const userImage = document.getElementById('userimage');
-                    if (userImage) {
-                        userImage.src = "https://ih1.redbubble.net/image.5509038997.5349/flat,750x1000,075,t.u1.jpg";
+                    if (deleteResponse.ok) {
+                        // Limpar dados locais
+                        localStorage.removeItem('token');
+                        setUserData(null);
+                        setIsLoggedIn(false);
+                        // Resetar a imagem do usuário para a padrão
+                        const userImage = document.getElementById('userimage');
+                        if (userImage) {
+                            userImage.src = "https://ih1.redbubble.net/image.5509038997.5349/flat,750x1000,075,t.u1.jpg";
+                        }
+                        // Fechar o perfil
+                        setIsProfileOpen(false);
+                        showAlert('Conta deletada com sucesso');
+                    } else {
+                        const data = await deleteResponse.json();
+                        showAlert(data.error || 'Erro ao deletar conta');
                     }
-                    // Fechar o perfil
-                    setIsProfileOpen(false);
-                    alert('Conta deletada com sucesso');
-                } else {
-                    const data = await response.json();
-                    alert(data.error || 'Erro ao deletar conta');
+                } catch (error) {
+                    console.error('Erro ao deletar conta:', error);
+                    showAlert('Erro ao deletar conta');
                 }
-            } catch (error) {
-                console.error('Erro ao deletar conta:', error);
-                alert('Erro ao deletar conta');
             }
-        }
+        );
     };
 
     const styles = {
@@ -433,6 +450,43 @@ function Inicio(){
             fontSize: '48px',
             color: '#666'
         }
+    };
+
+    // Função utilitária para mostrar alert
+    const showAlert = (message, title = '', onConfirm = null) => {
+        setModal({
+            isOpen: true,
+            title,
+            message,
+            type: 'alert',
+            onConfirm: () => {
+                setModal((m) => ({ ...m, isOpen: false }));
+                if (onConfirm) onConfirm();
+            },
+            onClose: () => setModal((m) => ({ ...m, isOpen: false })),
+            confirmText: 'OK',
+            cancelText: '',
+        });
+    };
+
+    // Função utilitária para mostrar confirm
+    const showConfirm = (message, title = '', onConfirm, onCancel) => {
+        setModal({
+            isOpen: true,
+            title,
+            message,
+            type: 'confirm',
+            onConfirm: () => {
+                setModal((m) => ({ ...m, isOpen: false }));
+                if (onConfirm) onConfirm();
+            },
+            onClose: () => {
+                setModal((m) => ({ ...m, isOpen: false }));
+                if (onCancel) onCancel();
+            },
+            confirmText: 'OK',
+            cancelText: 'Cancelar',
+        });
     };
 
     return(
@@ -779,7 +833,7 @@ function Inicio(){
                                                         }
                                                     } catch (error) {
                                                         console.error('Erro ao remover favorito:', error);
-                                                        alert('Erro ao remover favorito');
+                                                        showAlert('Erro ao remover favorito');
                                                     }
                                                 }}
                                             >
@@ -795,6 +849,16 @@ function Inicio(){
 
               </div>
           </section> 
+          <Modal
+            isOpen={modal.isOpen}
+            title={modal.title}
+            message={modal.message}
+            type={modal.type}
+            onConfirm={modal.onConfirm}
+            onClose={modal.onClose}
+            confirmText={modal.confirmText}
+            cancelText={modal.cancelText}
+          />
         </>
     )
 }
