@@ -180,6 +180,11 @@
     display: flex;
     transition: transform 0.5s ease;
     width: 100%;
+    touch-action: pan-y pinch-zoom;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 .card {
@@ -187,6 +192,7 @@
     padding: 15px;
     box-sizing: border-box;
     background-color: rgb(144, 252, 155);
+    touch-action: pan-y pinch-zoom;
 }
 
 .indicardcont{

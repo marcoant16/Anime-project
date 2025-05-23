@@ -40,6 +40,8 @@ function Inicio(){
 
     /////slide//////
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [touchStart, setTouchStart] = useState(null);
+    const [touchEnd, setTouchEnd] = useState(null);
     const sliderRef = useRef(null);
     const totalSlides = 4;
 
@@ -82,6 +84,34 @@ function Inicio(){
     // Função para mudar o slide
     const goToSlide = (index) => {
         setCurrentSlide(index);
+    };
+
+    // Funções para controle de touch
+    const handleTouchStart = (e) => {
+        setTouchStart(e.touches[0].clientX);
+    };
+
+    const handleTouchMove = (e) => {
+        setTouchEnd(e.touches[0].clientX);
+    };
+
+    const handleTouchEnd = () => {
+        if (!touchStart || !touchEnd) return;
+        
+        const distance = touchStart - touchEnd;
+        const isLeftSwipe = distance > 50;
+        const isRightSwipe = distance < -50;
+
+        if (isLeftSwipe) {
+            setCurrentSlide((prev) => (prev + 1) % totalSlides);
+        }
+        if (isRightSwipe) {
+            setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
+        }
+
+        // Resetar os valores
+        setTouchStart(null);
+        setTouchEnd(null);
     };
 
     // Efeito para o slider automático e atualização da posição
@@ -446,7 +476,12 @@ function Inicio(){
                   </div>
 
                   <div className="cardscfam">
-                    <div className="cardscfamslider" ref={sliderRef}>
+                    <div className="cardscfamslider" 
+                        ref={sliderRef}
+                        onTouchStart={handleTouchStart}
+                        onTouchMove={handleTouchMove}
+                        onTouchEnd={handleTouchEnd}
+                    >
                         {animeTitles.map((title, index) => (
                             <div className="card" key={index}>
                                 <div className="indicardcont">
