@@ -489,6 +489,18 @@ function Inicio(){
         });
     };
 
+    // Bloquear scroll do body quando o search-overlay estiver aberto
+    useEffect(() => {
+        if (isSearchOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [isSearchOpen]);
+
     return(
         <>
           <section className="kiana">
