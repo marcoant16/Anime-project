@@ -34,6 +34,7 @@ function Inicio(){
     const [registerForm, setRegisterForm] = useState({ username: '', email: '', password: '' });
     const [error, setError] = useState('');
     const [isRegistering, setIsRegistering] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [favorites, setFavorites] = useState([]);
     const [isFavoritesOpen, setIsFavoritesOpen] = useState(false);
 
@@ -254,6 +255,7 @@ function Inicio(){
 
     const handleRegister = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
         try {
             const response = await fetch(`${API_URL}/api/users/register`, {
                 method: 'POST',
@@ -273,6 +275,8 @@ function Inicio(){
         } catch (e) {
             setError('Erro ao registrar');
             console.error(e);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -638,26 +642,35 @@ function Inicio(){
                                                 placeholder="Nome de usuário"
                                                 value={registerForm.username}
                                                 onChange={(e) => setRegisterForm({...registerForm, username: e.target.value})}
+                                                disabled={isLoading}
                                             />
                                             <input
                                                 type="email"
                                                 placeholder="Email"
                                                 value={registerForm.email}
                                                 onChange={(e) => setRegisterForm({...registerForm, email: e.target.value})}
+                                                disabled={isLoading}
                                             />
                                             <input
                                                 type="password"
                                                 placeholder="Senha"
                                                 value={registerForm.password}
                                                 onChange={(e) => setRegisterForm({...registerForm, password: e.target.value})}
+                                                disabled={isLoading}
                                             />
-                                            <button type="submit">Registrar</button>
+                                            <button type="submit" disabled={isLoading}>
+                                                {isLoading ? 'Registrando...' : 'Registrar'}
+                                            </button>
+                                            {isLoading && (
+                                                <p className="loading-message">Sua conta está sendo registrada, por favor aguarde...</p>
+                                            )}
                                             <p>
                                                 Já tem uma conta? 
                                                 <button 
                                                     type="button" 
                                                     className="switch-auth"
                                                     onClick={() => setIsRegistering(false)}
+                                                    disabled={isLoading}
                                                 >
                                                     Fazer login
                                                 </button>
