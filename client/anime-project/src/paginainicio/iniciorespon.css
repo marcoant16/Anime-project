@@ -84,6 +84,20 @@
         background: var(--cor3);
 }
 
+/*pesquisa*/
+.search-button:hover {
+    background-color:var(--cor9);
+    border-color:var(--cor4);
+}
+
+.search-button:hover .lupa{
+    fill:var(--cor7);
+}
+
+.search-result-item:hover {
+    transform: translateY(-2px);
+}
+
 }
 
 @media screen and (max-width: 768px) {

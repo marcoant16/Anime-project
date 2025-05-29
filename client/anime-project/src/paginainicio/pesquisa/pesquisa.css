@@ -67,14 +67,7 @@
     transition: 0.8s ease;
 }
 
-.search-button:hover {
-    background-color:var(--cor9);
-    border-color:var(--cor4);
-}
 
-.search-button:hover .lupa{
-    fill:var(--cor7);
-}
 
 .search-results {
     margin-top: 2rem;
@@ -106,9 +99,6 @@
     transition: transform 0.3s ease;
 }
 
-.search-result-item:hover {
-    transform: translateY(-2px);
-}
 
 .search-result-image {
     width: 150px;
