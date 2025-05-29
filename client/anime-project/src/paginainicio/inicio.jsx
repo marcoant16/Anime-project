@@ -534,13 +534,28 @@ function Inicio(){
         window.history.back();
     };
 
+    // Função para fechar o overlay de perfil
+    const closeProfile = () => {
+        setIsProfileOpen(false);
+        window.history.back();
+    };
+
+    // Função para fechar o overlay de pesquisa
+    const closeSearch = () => {
+        setIsSearchOpen(false);
+        window.history.back();
+    };
+
+    // Função para fechar o overlay de card expandido
+    const closeExpandedCard = () => {
+        setExpandedCard(null);
+        window.history.back();
+    };
+
     // Efeito para gerenciar o botão voltar
     useEffect(() => {
-        const handlePopState = (event) => {
-            // Se não houver estado anterior, fecha todos os overlays
-            if (!event.state) {
-                closeAllOverlays();
-            }
+        const handlePopState = () => {
+            closeAllOverlays();
         };
 
         window.addEventListener('popstate', handlePopState);
@@ -619,7 +634,7 @@ function Inicio(){
 
                   {expandedCard !== null && (
                     <div className="cardinfo2-overlay">
-                        <button className="close-button xclose" onClick={() => setExpandedCard(null)}><X/></button>
+                        <button className="close-button xclose" onClick={closeExpandedCard}><X/></button>
                         <div className={`cardinfo2 active`}>
                             <div className="cardframecont">
                                 <iframe className="cari2frame" src={animeYoutube[expandedCard] || "https://www.youtube.com/embed/CmCIZ_aUAeQ?si=WoXAXCNFAfA5pNlG"} title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen/>
@@ -665,7 +680,7 @@ function Inicio(){
                   {isSearchOpen && (
                     <div className="search-overlay">
                         <div className="search-container">
-                            <button className="close-search xclose" onClick={toggleSearch}><X/></button>
+                            <button className="close-search xclose" onClick={closeSearch}><X/></button>
 
                             <div className="search-bar">
                                 <input  type="text" placeholder="Pesquisar..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} onKeyUp={handleKeyPress}/>
@@ -740,7 +755,7 @@ function Inicio(){
                   {isProfileOpen && (
                     <div className="profile-overlay">
                         <div className="profile-container">
-                            <button className="close-profile" onClick={toggleProfile}>×</button>
+                            <button className="close-profile" onClick={closeProfile}>×</button>
                             
                             {isLoggedIn && userData ? (
                                 <div className="profile-content">
