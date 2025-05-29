@@ -429,3 +429,128 @@ input:disabled {
     background-color: #f5f5f5;
     cursor: not-allowed;
 }
+
+/* Media queries para telas grandes */
+@media screen and (min-width: 1920px) {
+    .kianaheader {
+        height: 30%;
+    }
+
+    .textheaderki h1 {
+        font-size: 2.5em;
+    }
+
+    .userimagecont {
+        height: 100px;
+        width: 120px;
+    }
+
+    .cardimagecont {
+        height: 600px;
+    }
+
+    .cardname1 {
+        font-size: 2em;
+    }
+
+    .cardinfo2 {
+        width: 80%;
+        max-width: 1600px;
+    }
+
+    .cardframecont {
+        height: 70%;
+    }
+
+    .cardname2 {
+        font-size: 1.8em;
+    }
+
+    .notacont {
+        font-size: 1.8em;
+    }
+
+    .cardinfo2sinocont {
+        height: 20%;
+    }
+
+    .cardinfo2minicont2 {
+        font-size: 1.5em;
+    }
+}
+
+@media screen and (min-width: 2560px) {
+    .kianaheader {
+        height: 25%;
+    }
+
+    .textheaderki h1 {
+        font-size: 3em;
+    }
+
+    .userimagecont {
+        height: 120px;
+        width: 140px;
+    }
+
+    .cardimagecont {
+        height: 800px;
+    }
+
+    .cardname1 {
+        font-size: 2.5em;
+    }
+
+    .cardinfo2 {
+        width: 85%;
+        max-width: 2000px;
+    }
+
+    .cardframecont {
+        height: 75%;
+    }
+
+    .cardname2 {
+        font-size: 2.2em;
+    }
+
+    .notacont {
+        font-size: 2.2em;
+    }
+
+    .cardinfo2sinocont {
+        height: 22%;
+    }
+
+    .cardinfo2minicont2 {
+        font-size: 1.8em;
+    }
+}
+
+/* Ajustes gerais para telas grandes */
+@media screen and (min-width: 1440px) {
+    .search-container {
+        max-width: 800px;
+    }
+
+    .search-result-item {
+        height: 300px;
+    }
+
+    .search-result-image {
+        width: 200px;
+        height: 300px;
+    }
+
+    .search-result-info h3 {
+        font-size: 1.5rem;
+    }
+
+    .search-result-info p {
+        font-size: 1.1rem;
+    }
+
+    .search-result-details span {
+        font-size: 1.1rem;
+    }
+}

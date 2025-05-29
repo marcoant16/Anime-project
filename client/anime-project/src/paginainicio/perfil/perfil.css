@@ -355,3 +355,84 @@
 body {
     overflow-x: hidden;
 }
+
+/* Media queries para telas grandes */
+@media screen and (min-width: 1920px) {
+    .profile-container {
+        max-width: 800px;
+        padding: 3rem;
+    }
+
+    .profile-image-container {
+        width: 200px;
+        height: 200px;
+    }
+
+    .profile-info h2 {
+        font-size: 2.2em;
+    }
+
+    .profile-info p {
+        font-size: 1.2em;
+    }
+
+    .auth-form input {
+        width: 80%;
+        padding: 15px;
+        font-size: 1.2rem;
+    }
+
+    .auth-form button[type="submit"] {
+        width: 80%;
+        padding: 15px;
+        font-size: 1.2rem;
+    }
+
+    .auth-form h2 {
+        font-size: 2em;
+    }
+
+    .switch-auth {
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (min-width: 2560px) {
+    .profile-container {
+        max-width: 1000px;
+        padding: 4rem;
+    }
+
+    .profile-image-container {
+        width: 250px;
+        height: 250px;
+    }
+
+    .profile-info h2 {
+        font-size: 2.5em;
+    }
+
+    .profile-info p {
+        font-size: 1.4em;
+    }
+
+    .auth-form input {
+        width: 85%;
+        padding: 18px;
+        font-size: 1.4rem;
+    }
+
+    .auth-form button[type="submit"] {
+        width: 85%;
+        padding: 18px;
+        font-size: 1.4rem;
+    }
+
+    .auth-form h2 {
+        font-size: 2.3em;
+    }
+
+    .switch-auth {
+        font-size: 1.4rem;
+    }
+}

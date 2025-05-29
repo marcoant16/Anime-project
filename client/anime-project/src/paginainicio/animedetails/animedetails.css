@@ -158,3 +158,76 @@
         padding: 1rem;
     }
 }
+
+/* Media queries para telas grandes */
+@media screen and (min-width: 1920px) {
+    .anime-details-container {
+        max-width: 1600px;
+        padding: 3rem;
+    }
+
+    .anime-details-image {
+        width: 400px;
+        height: 600px;
+    }
+
+    .anime-details-info h2 {
+        font-size: 2.5rem;
+    }
+
+    .anime-details-stats span {
+        font-size: 1.1rem;
+        padding: 0.7rem 1.5rem;
+    }
+
+    .anime-synopsis h3,
+    .anime-genres h3 {
+        font-size: 1.8rem;
+    }
+
+    .anime-synopsis p {
+        font-size: 1.2rem;
+        line-height: 1.8;
+    }
+
+    .genre-tag {
+        font-size: 1.1rem;
+        padding: 0.7rem 1.5rem;
+    }
+}
+
+@media screen and (min-width: 2560px) {
+    .anime-details-container {
+        max-width: 2000px;
+        padding: 4rem;
+    }
+
+    .anime-details-image {
+        width: 500px;
+        height: 750px;
+    }
+
+    .anime-details-info h2 {
+        font-size: 3rem;
+    }
+
+    .anime-details-stats span {
+        font-size: 1.3rem;
+        padding: 0.8rem 1.8rem;
+    }
+
+    .anime-synopsis h3,
+    .anime-genres h3 {
+        font-size: 2.2rem;
+    }
+
+    .anime-synopsis p {
+        font-size: 1.4rem;
+        line-height: 2;
+    }
+
+    .genre-tag {
+        font-size: 1.3rem;
+        padding: 0.8rem 1.8rem;
+    }
+}
