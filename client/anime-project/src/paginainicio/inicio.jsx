@@ -63,6 +63,9 @@ function Inicio(){
     };
 
     const toggleCardExpand = (index) => {
+        if (expandedCard === null) {
+            handleOverlayOpen('cardExpand');
+        }
         setExpandedCard(expandedCard === index ? null : index);
     };
 
@@ -70,6 +73,9 @@ function Inicio(){
    /////pesquisa de anime
 
     const toggleSearch = () => {
+        if (!isSearchOpen) {
+            handleOverlayOpen('search');
+        }
         setIsSearchOpen(!isSearchOpen);
         setSearchResults([]);
     };
@@ -239,13 +245,18 @@ function Inicio(){
 
     const handleAnimeClick = (anime) => {
         setSelectedAnime(anime);
+        handleOverlayOpen('animeDetails');
     };
 
     const closeAnimeDetails = () => {
         setSelectedAnime(null);
+        window.history.back();
     };
 
     const toggleProfile = () => {
+        if (!isProfileOpen) {
+            handleOverlayOpen('profile');
+        }
         setIsProfileOpen(!isProfileOpen);
         setError('');
     };
@@ -385,6 +396,7 @@ function Inicio(){
                 const data = await response.json();
                 setFavorites(data);
                 setIsFavoritesOpen(true);
+                handleOverlayOpen('favorites');
             }
         } catch (error) {
             console.error('Erro ao carregar favoritos:', error);
@@ -500,6 +512,43 @@ function Inicio(){
             document.body.style.overflow = '';
         };
     }, [isSearchOpen]);
+
+    // Função para fechar todos os overlays
+    const closeAllOverlays = () => {
+        setIsProfileOpen(false);
+        setIsSearchOpen(false);
+        setIsFavoritesOpen(false);
+        setSelectedAnime(null);
+        setExpandedCard(null);
+    };
+
+    // Função para gerenciar o histórico
+    const handleOverlayOpen = (overlayType) => {
+        // Adiciona um estado ao histórico
+        window.history.pushState({ overlay: overlayType }, '');
+    };
+
+    // Função para fechar o overlay de favoritos
+    const closeFavorites = () => {
+        setIsFavoritesOpen(false);
+        window.history.back();
+    };
+
+    // Efeito para gerenciar o botão voltar
+    useEffect(() => {
+        const handlePopState = (event) => {
+            // Se não houver estado anterior, fecha todos os overlays
+            if (!event.state) {
+                closeAllOverlays();
+            }
+        };
+
+        window.addEventListener('popstate', handlePopState);
+
+        return () => {
+            window.removeEventListener('popstate', handlePopState);
+        };
+    }, []);
 
     return(
         <>
@@ -814,7 +863,7 @@ function Inicio(){
                   {isFavoritesOpen && (
                     <div className="favorites-overlay">
                         <div className="favorites-container">
-                            <button className="close-favorites" onClick={() => setIsFavoritesOpen(false)}>×</button>
+                            <button className="close-favorites" onClick={closeFavorites}>×</button>
                             <h2 id="favh2">Meus Favoritos</h2>
                             <div className="favorites-grid">
                                 {favorites.map((favorite) => (
