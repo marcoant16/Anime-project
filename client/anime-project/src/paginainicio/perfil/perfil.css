@@ -46,9 +46,6 @@
     border: 1px solid var(--cor3);
 }
 
-.profile-container::-webkit-scrollbar-thumb:hover {
-    background: var(--cor3);
-}
 
 .close-profile {
     position: absolute;
@@ -68,9 +65,6 @@
     transition: 0.3s ease;
 }
 
-.close-profile:hover {
-    color:var(--cor3);
-}
 
 .profile-content {
     display: flex;
@@ -136,9 +130,6 @@
     transition: background-color 0.3s;
 }
 
-.logout-button:hover {
-    background-color: var(--cor9);
-}
 
 .auth-content {
     padding: 1rem;
@@ -214,11 +205,6 @@
     font-weight: 500;
 }
 
-.auth-form button[type="submit"]:hover {
-    background-color: var(--cor3);
-    transform: translateY(-2px);
-}
-
 .auth-form p {
     text-align: center;
     color: #ccc;
@@ -235,9 +221,6 @@
     margin-left: 0.5rem;
 }
 
-.switch-auth:hover {
-    text-decoration: underline;
-}
 
 .error-message {
     background-color: rgba(255, 107, 107, 0.1);
@@ -272,18 +255,12 @@
     color: var(--cor1);
 }
 
-.logout-button:hover {
-    background-color: var(--cor3);
-}
 
 .delete-account-button {
     background-color: var(--cor9);
     color: var(--cor1);
 }
 
-.delete-account-button:hover {
-    background-color:rgb(1, 26, 6);
-}
 
 @media screen and (max-width: 768px) {
     .auth-form input {
@@ -337,9 +314,6 @@
         border: 1px solid var(--cor3);
     }
 
-    .profile-container::-webkit-scrollbar-thumb:hover {
-        background: var(--cor3);
-    }
 }
 
 @media screen and (max-width: 480px) {

@@ -43,10 +43,6 @@
     stroke: var(--cor8);
 }
 
-.close-details:hover .xpath{
-    fill:var(--cor9);
-}
-
 .anime-details-header {
     display: flex;
     gap: 2rem;

@@ -89,9 +89,3 @@
     font-size: 0.9rem;
     transition:0.2s ease;
 }
-
-.remove-favorite:hover {
-    background-color: var(--cor7);
-    border-color: var(--cor8);
-    color: var(--cor2);
-}
