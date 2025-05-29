@@ -397,33 +397,33 @@ function Inicio(){
             'Tem certeza que deseja deletar sua conta? Esta ação não pode ser desfeita.',
             'Confirmação',
             async () => {
-                try {
+            try {
                     const deleteResponse = await fetch(`${API_URL}/api/users/delete-account`, {
-                        method: 'DELETE',
-                        headers: {
-                            'Authorization': `Bearer ${localStorage.getItem('token')}`
-                        }
-                    });
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
 
                     if (deleteResponse.ok) {
-                        // Limpar dados locais
-                        localStorage.removeItem('token');
-                        setUserData(null);
-                        setIsLoggedIn(false);
-                        // Resetar a imagem do usuário para a padrão
-                        const userImage = document.getElementById('userimage');
-                        if (userImage) {
-                            userImage.src = "https://ih1.redbubble.net/image.5509038997.5349/flat,750x1000,075,t.u1.jpg";
-                        }
-                        // Fechar o perfil
-                        setIsProfileOpen(false);
+                    // Limpar dados locais
+                    localStorage.removeItem('token');
+                    setUserData(null);
+                    setIsLoggedIn(false);
+                    // Resetar a imagem do usuário para a padrão
+                    const userImage = document.getElementById('userimage');
+                    if (userImage) {
+                        userImage.src = "https://ih1.redbubble.net/image.5509038997.5349/flat,750x1000,075,t.u1.jpg";
+                    }
+                    // Fechar o perfil
+                    setIsProfileOpen(false);
                         showAlert('Conta deletada com sucesso');
-                    } else {
+                } else {
                         const data = await deleteResponse.json();
                         showAlert(data.error || 'Erro ao deletar conta');
-                    }
-                } catch (error) {
-                    console.error('Erro ao deletar conta:', error);
+                }
+            } catch (error) {
+                console.error('Erro ao deletar conta:', error);
                     showAlert('Erro ao deletar conta');
                 }
             }
