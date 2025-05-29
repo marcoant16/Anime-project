@@ -87,11 +87,6 @@
     transition: all 0.3s ease;
 }
 
-.image-upload-label:hover {
-    background-color:transparent;
-    border: var(--cor4) ;
-}
-
 .upload-icon {
     font-size: 20px;
 }
@@ -138,6 +133,8 @@
 
 .auth-form input {
     padding: 12px;
+    width: 80%;
+    height: 20%;
     border: 2px solid var(--cor7);
     border-radius: 5px;
     background-color:#8ddf8d67;
