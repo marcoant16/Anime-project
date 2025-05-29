@@ -342,12 +342,10 @@
     }
 
     .auth-form input {
-        padding: 3px;
         margin-bottom: 1px;
     }
 
     .auth-form button {
-        padding: 8px 8px;
         font-size: 0.9em;
     }
 
