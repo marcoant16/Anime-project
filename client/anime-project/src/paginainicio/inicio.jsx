@@ -327,7 +327,7 @@ function Inicio(){
                 setError(data.error);
             }
         } catch (e) {
-            setError('Erro ao registrar');
+            setError('Error registering');
             console.error(e);
         } finally {
             setIsLoading(false);
@@ -373,7 +373,7 @@ function Inicio(){
                 }
             }
         } catch (error) {
-            setError('Erro ao fazer upload da imagem');
+            setError('Error uploading image');
             console.error(error);
         }
     };
@@ -381,7 +381,7 @@ function Inicio(){
     // Função para carregar os favoritos
     const loadFavorites = async () => {
         if (!isLoggedIn) {
-            showAlert('Por favor, faça login para ver seus favoritos');
+            showAlert('Please log in to view your favorites');
             return;
         }
 
@@ -399,15 +399,15 @@ function Inicio(){
                 handleOverlayOpen('favorites');
             }
         } catch (error) {
-            console.error('Erro ao carregar favoritos:', error);
-            showAlert('Erro ao carregar favoritos');
+            console.error('Error loading favorites:', error);
+            showAlert('Error loading favorites');
         }
     };
 
     const handleDeleteAccount = async () => {
         showConfirm(
-            'Tem certeza que deseja deletar sua conta? Esta ação não pode ser desfeita.',
-            'Confirmação',
+            'Are you sure you want to delete your account? This action cannot be undone.',
+            'Confirmation',
             async () => {
             try {
                     const deleteResponse = await fetch(`${API_URL}/api/users/delete-account`, {
@@ -429,14 +429,14 @@ function Inicio(){
                     }
                     // Fechar o perfil
                     setIsProfileOpen(false);
-                        showAlert('Conta deletada com sucesso');
+                        showAlert('Account deleted successfully');
                 } else {
                         const data = await deleteResponse.json();
-                        showAlert(data.error || 'Erro ao deletar conta');
+                        showAlert(data.error || 'Error deleting account');
                 }
             } catch (error) {
-                console.error('Erro ao deletar conta:', error);
-                    showAlert('Erro ao deletar conta');
+                console.error('Error deleting account:', error);
+                    showAlert('Error deleting account');
                 }
             }
         );
@@ -696,8 +696,8 @@ function Inicio(){
                                             <h3>{anime.title}</h3>
                                             <p>{anime.synopsis?.substring(0, 150)}...</p>
                                             <div className="search-result-details">
-                                                <span>Nota: {anime.score || "Unknown"}</span>
-                                                <span>Episódios: {anime.episodes || "Unknown"}</span>
+                                                <span>Score: {anime.score || "Unknown"}</span>
+                                                <span>Episodes: {anime.episodes || "Unknown"}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -827,17 +827,17 @@ function Inicio(){
                                                 {isLoading ? 'Registrando...' : 'Registrar'}
                                             </button>
                                             {isLoading && (
-                                                <p className="loading-message">Sua conta está sendo registrada, por favor aguarde...</p>
+                                                <p className="loading-message">Your account is being registered, please wait...</p>
                                             )}
                                             <p>
-                                                Já tem uma conta? 
+                                                Already have an account?
                                                 <button 
                                                     type="button" 
                                                     className="switch-auth"
                                                     onClick={() => setIsRegistering(false)}
                                                     disabled={isLoading}
                                                 >
-                                                    Fazer login
+                                                    Log in
                                                 </button>
                                             </p>
                                         </form>
@@ -858,13 +858,13 @@ function Inicio(){
                                             />
                                             <button type="submit">Entrar</button>
                                             <p>
-                                                Não tem uma conta? 
+                                                Don't have an account?
                                                 <button 
                                                     type="button" 
                                                     className="switch-auth"
                                                     onClick={() => setIsRegistering(true)}
                                                 >
-                                                    Registrar
+                                                    Register
                                                 </button>
                                             </p>
                                         </form>
@@ -879,7 +879,7 @@ function Inicio(){
                     <div className="favorites-overlay">
                         <div className="favorites-container">
                             <button className="close-favorites" onClick={closeFavorites}>×</button>
-                            <h2 id="favh2">Meus Favoritos</h2>
+                            <h2 id="favh2">My Favorites</h2>
                             <div className="favorites-grid">
                                 {favorites.map((favorite) => (
                                     <div key={favorite._id} className="favorite-card">
@@ -908,12 +908,12 @@ function Inicio(){
                                                             setFavorites(favorites.filter(f => f._id !== favorite._id));
                                                         }
                                                     } catch (error) {
-                                                        console.error('Erro ao remover favorito:', error);
-                                                        showAlert('Erro ao remover favorito');
+                                                        console.error('Error removing favorite:', error);
+                                                        showAlert('Error removing favorite');
                                                     }
                                                 }}
                                             >
-                                                Remover dos favoritos
+                                                Remove favorite
                                             </button>
                                         </div>
                                     </div>
