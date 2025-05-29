@@ -24,6 +24,30 @@
     position: relative;
     color: var(--cor1);
     overflow-x: hidden;
+    max-height: 90vh;
+    overflow-y: auto;
+    scrollbar-width: thin; /* Para Firefox */
+    scrollbar-color: var(--cor4) var(--cor10); /* Para Firefox */
+}
+
+/* Estilização da barra de rolagem para Chrome, Edge e Safari */
+.profile-container::-webkit-scrollbar {
+    width: 8px;
+    display: block;
+}
+
+.profile-container::-webkit-scrollbar-track {
+    background: var(--cor10);
+    border-radius: 4px;
+}
+
+.profile-container::-webkit-scrollbar-thumb {
+    background: var(--cor4);
+    border-radius: 4px;
+}
+
+.profile-container::-webkit-scrollbar-thumb:hover {
+    background: var(--cor3);
 }
 
 .close-profile {
@@ -265,6 +289,11 @@
         font-size: 1.1rem;
         padding: 5px 0;
     }
+
+    .profile-container {
+        max-height: 85vh;
+        -webkit-overflow-scrolling: touch; /* Melhor suporte para iOS */
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -286,6 +315,17 @@
 
     .switch-auth {
         font-size: 1.2rem;
+    }
+
+    .profile-container {
+        max-height: 80vh;
+    }
+}
+
+/* Ajuste para landscape em dispositivos móveis */
+@media screen and (max-height: 480px) and (orientation: landscape) {
+    .profile-container {
+        max-height: 95vh;
     }
 }
 
