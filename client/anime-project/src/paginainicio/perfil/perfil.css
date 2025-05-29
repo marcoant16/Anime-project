@@ -2,11 +2,7 @@
 
 @import url('../../cssglobal/variaveis.css');
 
-.profile-overlay,
-.search-overlay,
-.favorites-overlay,
-.anime-details-overlay,
-.cardinfo2-overlay {
+.profile-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -17,25 +13,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior: none;
-    touch-action: none;
 }
 
-.profile-container,
-.search-container,
-.favorites-container,
-.anime-details-container,
-.cardinfo2 {
-    position: relative;
+.profile-container {
+    background-color: var(--cor10);
+    padding: 2rem;
+    border-radius: 10px;
     width: 90%;
     max-width: 500px;
+    position: relative;
+    color: var(--cor1);
+    overflow-x: hidden;
     max-height: 90vh;
     overflow-y: auto;
-    overscroll-behavior: contain;
-    -webkit-overflow-scrolling: touch;
-    touch-action: pan-y;
 }
 
 /* Estilização da barra de rolagem para Chrome, Edge e Safari */
@@ -295,18 +285,7 @@
     background-color:rgb(1, 26, 6);
 }
 
-/* Ajustes para dispositivos móveis */
 @media screen and (max-width: 768px) {
-    .profile-container,
-    .search-container,
-    .favorites-container,
-    .anime-details-container,
-    .cardinfo2 {
-        max-height: 85vh;
-        overscroll-behavior: contain;
-        -webkit-overflow-scrolling: touch;
-    }
-
     .auth-form input {
         width: 85%;
         padding: 15px;
@@ -334,17 +313,36 @@
         font-size: 1.1rem;
         padding: 5px 0;
     }
+
+    .profile-container {
+        max-height: 85vh;
+        overflow-y: scroll;
+        padding-right: 1rem;
+    }
+
+    .profile-container::-webkit-scrollbar {
+        width: 8px;
+        display: block;
+    }
+
+    .profile-container::-webkit-scrollbar-track {
+        background: var(--cor10);
+        border-radius: 4px;
+        border: 1px solid var(--cor4);
+    }
+
+    .profile-container::-webkit-scrollbar-thumb {
+        background: var(--cor4);
+        border-radius: 4px;
+        border: 1px solid var(--cor3);
+    }
+
+    .profile-container::-webkit-scrollbar-thumb:hover {
+        background: var(--cor3);
+    }
 }
 
 @media screen and (max-width: 480px) {
-    .profile-container,
-    .search-container,
-    .favorites-container,
-    .anime-details-container,
-    .cardinfo2 {
-        max-height: 80vh;
-    }
-
     .auth-form input {
         width: 90%;
         padding: 18px;
@@ -364,16 +362,18 @@
     .switch-auth {
         font-size: 1.2rem;
     }
+
+    .profile-container {
+        max-height: 80vh;
+        padding-right: 1rem;
+    }
 }
 
 /* Ajuste para landscape em dispositivos móveis */
 @media screen and (max-height: 480px) and (orientation: landscape) {
-    .profile-container,
-    .search-container,
-    .favorites-container,
-    .anime-details-container,
-    .cardinfo2 {
+    .profile-container {
         max-height: 95vh;
+        padding-right: 1rem;
     }
 }
 

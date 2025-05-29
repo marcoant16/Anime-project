@@ -1,6 +1,42 @@
 @charset "UTF-8";
 @import url('../cssglobal/variaveis.css');
 
+/* Desabilitar hovers em dispositivos móveis */
+@media (hover: none) {
+    * {
+        transition: none !important;
+    }
+
+    *:hover {
+        transform: none !important;
+        background-color: transparent !important;
+        text-decoration: none !important;
+        opacity: 1 !important;
+    }
+
+    /* Manter alguns comportamentos específicos */
+    .libusc {
+        background-color: rgb(13, 196, 74);
+    }
+
+    .lupa {
+        background-color: var(--cor8);
+    }
+
+    .logout-button,
+    .delete-account-button {
+        background-color: var(--cor8);
+    }
+
+    .genre-tag {
+        background-color: var(--cor8);
+    }
+
+    /* Manter opacidade do ícone de upload */
+    .profile-image-container .upload-icon {
+        opacity: 1;
+    }
+}
 
 /*media exclusivas para larguras*/
 @media screen and (max-width: 768px) {
@@ -350,102 +386,5 @@
     .error-message {
         font-size: 0.9em;
         margin-bottom: 2px;
-    }
-}
-
-
-/* Desabilitar hovers em dispositivos móveis */
-@media (hover: none) {
-    /* Elementos do header */
-    .libscell:hover,
-    .libscell:hover {
-        background-color: transparent;
-    }
-
-    .libusc:hover {
-        background-color: rgb(13, 196, 74);
-    }
-
-    .libusc:hover .lupa {
-        fill: var(--cor9);
-    }
-
-    .lupa:hover {
-        background-color: var(--cor8);
-    }
-
-    /* Elementos dos cards */
-    .card:hover {
-        transform: none;
-    }
-
-    .cardexpandir:hover {
-        transform: none;
-    }
-
-    /* Elementos de pesquisa */
-    .search-result-item:hover {
-        transform: none;
-        background-color: transparent;
-    }
-
-    .search-button:hover {
-        background-color: transparent;
-    }
-
-    /* Elementos do perfil */
-    .profile-image-container:hover .upload-icon {
-        opacity: 0;
-    }
-
-    .logout-button:hover,
-    .delete-account-button:hover {
-        background-color: var(--cor8);
-        transform: none;
-    }
-
-    .switch-auth:hover {
-        background-color: transparent;
-        text-decoration: none;
-    }
-
-    /* Elementos dos favoritos */
-    .favorite-card:hover {
-        transform: none;
-    }
-
-    .remove-favorite:hover {
-        background-color: var(--cor8);
-        transform: none;
-    }
-
-    /* Elementos do coração */
-    #heartsvg:hover {
-        transform: none;
-    }
-
-    /* Elementos dos detalhes do anime */
-    .anime-details-container button:hover {
-        background-color: transparent;
-        transform: none;
-    }
-
-    .genre-tag:hover {
-        background-color: var(--cor8);
-        transform: none;
-    }
-
-    /* Elementos gerais */
-    button:hover {
-        transform: none;
-    }
-
-    a:hover {
-        text-decoration: none;
-    }
-
-    /* Desabilitar transições em dispositivos móveis */
-    * {
-        transition: none !important;
     }
 }
