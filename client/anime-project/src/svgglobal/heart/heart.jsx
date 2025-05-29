@@ -35,7 +35,7 @@ function Heart({ animeData }) {
                         setIsFavorited(data.isFavorited);
                     }
                 } catch (error) {
-                    console.error('Erro ao verificar status do favorito:', error);
+                    console.error('Error checking favorite status:', error);
                 }
             }
         };
@@ -45,12 +45,12 @@ function Heart({ animeData }) {
 
     const handleFavorite = async () => {
         if (!isLoggedIn) {
-            showAlert('Por favor, faça login para adicionar aos favoritos');
+            showAlert('Please login to add to favorites');
             return;
         }
 
         if (!animeData) {
-            console.error('Dados do anime não disponíveis');
+            console.error('Anime data not available');
             return;
         }
 
@@ -59,9 +59,9 @@ function Heart({ animeData }) {
                 mal_id: typeof animeData.mal_id === 'number' 
                     ? animeData.mal_id 
                     : parseInt(animeData.mal_id) || 0,
-                title: animeData.title || 'Sem título',
+                title: animeData.title || 'Untitled',
                 image_url: animeData.images?.jpg?.large_image_url || animeData.image_url || '',
-                synopsis: animeData.synopsis || 'Sem sinopse',
+                synopsis: animeData.synopsis || 'No synopsis',
                 review: ''
             };
 
@@ -78,15 +78,15 @@ function Heart({ animeData }) {
 
             if (response.ok) {
                 setIsFavorited(true);
-                showAlert('Anime adicionado aos favoritos!');
+                showAlert('Anime added to favorites!');
             } else if (response.status === 400) {
-                showAlert(data.message || 'Este anime já está nos favoritos');
+                showAlert(data.message || 'This anime is already in my favorites');
             } else {
-                throw new Error(data.details || data.error || 'Erro ao adicionar aos favoritos');
+                throw new Error(data.details || data.error || 'Error adding to favorites');
             }
         } catch (error) {
-            console.error('Erro ao adicionar favorito:', error);
-            showAlert(error.message || 'Erro ao adicionar aos favoritos');
+            console.error('Error adding favorite:', error);
+            showAlert(error.message || 'Error adding to favorites');
         }
     };
 
@@ -117,7 +117,7 @@ function Heart({ animeData }) {
             strokeWidth="1" 
             strokeLinecap="round" 
             strokeLinejoin="round"
-            aria-label={isFavorited ? "Remover dos favoritos" : "Adicionar aos favoritos"}
+            aria-label={isFavorited ? "Remove from favorites" : "Add to favorites"}
         >
             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
         </svg>

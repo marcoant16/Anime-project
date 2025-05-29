@@ -683,7 +683,7 @@ function Inicio(){
                             <button className="close-search xclose" onClick={closeSearch}><X/></button>
 
                             <div className="search-bar">
-                                <input  type="text" placeholder="Pesquisar..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} onKeyUp={handleKeyPress}/>
+                                <input  type="text" placeholder="search..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} onKeyUp={handleKeyPress}/>
                                 <button className="search-button" onClick={handleSearch}><Lupa/></button>
                             </div>
 
@@ -804,7 +804,7 @@ function Inicio(){
                                             <h2>Registrar</h2>
                                             <input
                                                 type="text"
-                                                placeholder="Nome de usuário"
+                                                placeholder="User Name"
                                                 value={registerForm.username}
                                                 onChange={(e) => setRegisterForm({...registerForm, username: e.target.value})}
                                                 disabled={isLoading}
@@ -818,13 +818,13 @@ function Inicio(){
                                             />
                                             <input
                                                 type="password"
-                                                placeholder="Senha"
+                                                placeholder="password"
                                                 value={registerForm.password}
                                                 onChange={(e) => setRegisterForm({...registerForm, password: e.target.value})}
                                                 disabled={isLoading}
                                             />
                                             <button type="submit" disabled={isLoading}>
-                                                {isLoading ? 'Registrando...' : 'Registrar'}
+                                                {isLoading ? 'Registering...' : 'Register'}
                                             </button>
                                             {isLoading && (
                                                 <p className="loading-message">Your account is being registered, please wait...</p>
@@ -846,17 +846,17 @@ function Inicio(){
                                             <h2>Login</h2>
                                             <input
                                                 type="text"
-                                                placeholder="Nome de usuário"
+                                                placeholder="User Name"
                                                 value={loginForm.username}
                                                 onChange={(e) => setLoginForm({...loginForm, username: e.target.value})}
                                             />
                                             <input
                                                 type="password"
-                                                placeholder="Senha"
+                                                placeholder="password"
                                                 value={loginForm.password}
                                                 onChange={(e) => setLoginForm({...loginForm, password: e.target.value})}
                                             />
-                                            <button type="submit">Entrar</button>
+                                            <button type="submit">Enter</button>
                                             <p>
                                                 Don't have an account?
                                                 <button 
