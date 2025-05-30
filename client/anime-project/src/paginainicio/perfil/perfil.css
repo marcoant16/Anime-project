@@ -403,12 +403,12 @@ body {
         padding: 4rem;
     }
 
-    .profile-info h2 {
-        font-size: 2.5em;
+     .profile-info h2 {
+        font-size: 3.0em;
     }
 
     .profile-info p {
-        font-size: 1.4em;
+        font-size: 2.0em;
     }
 
     .auth-form input {
