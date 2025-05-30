@@ -4,30 +4,28 @@ import bcryptjs from "bcryptjs";
 import User from "../models/user.mjs";
 import 'dotenv/config'
 import multer from 'multer';
-import path from 'path';
-import fs from 'fs';
+import multerS3 from 'multer-s3';
+import s3Client from '../config/s3.mjs';
+import { PutObjectCommand } from '@aws-sdk/client-s3';
 import authenticate from "../autenticacao/middwareaut.mjs";
 import Favorite from "../models/favorito.mjs";
 
 const JWT_SECRET = process.env.JWT_SECRET;
 const userota = Router();
 
-// Configuração do multer para upload de imagens
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        const uploadDir = 'uploads/profile';
-        if (!fs.existsSync(uploadDir)) {
-            fs.mkdirSync(uploadDir, { recursive: true });
+// Configuração do multer para upload de imagens para o S3
+const upload = multer({
+    storage: multerS3({
+        s3: s3Client,
+        bucket: process.env.AWS_BUCKET_NAME,
+        metadata: function (req, file, cb) {
+            cb(null, { fieldName: file.fieldname });
+        },
+        key: function (req, file, cb) {
+            const fileName = `profile/${Date.now()}-${file.originalname}`;
+            cb(null, fileName);
         }
-        cb(null, uploadDir);
-    },
-    filename: function (req, file, cb) {
-        cb(null, `${Date.now()}-${file.originalname}`);
-    }
-});
-
-const upload = multer({ 
-    storage: storage,
+    }),
     limits: {
         fileSize: 5 * 1024 * 1024 // limite de 5MB
     },
@@ -115,7 +113,8 @@ userota.post('/upload-image', authenticate, upload.single('image'), async (req, 
             return res.status(400).json({ error: 'Nenhuma imagem enviada' });
         }
 
-        const imageUrl = `/uploads/profile/${req.file.filename}`;
+        // A URL da imagem será fornecida pelo multer-s3
+        const imageUrl = req.file.location;
         
         await User.findByIdAndUpdate(req.user.id, {
             profileImage: imageUrl
@@ -123,6 +122,7 @@ userota.post('/upload-image', authenticate, upload.single('image'), async (req, 
 
         res.json({ imageUrl });
     } catch (error) {
+        console.error('Erro no upload:', error);
         res.status(500).json({ error: 'Erro ao fazer upload da imagem' });
     }
 });
