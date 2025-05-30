@@ -360,9 +360,14 @@ body {
     }
 
     .profile-image-container {
-        width: 300px;
-        height: 300px;
+        width: 250px;
+        height: 250px;
         background-color: blue;
+    }
+
+    .profile-image{
+        height: 100%;
+        width: 100%;
     }
 
     .image-upload-label{
