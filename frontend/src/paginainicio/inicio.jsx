@@ -3,13 +3,16 @@ import { login, logout, getUserData, isAuthenticated } from '../services/auth';
 // Efeito para carregar os animes e verificar login
 useEffect(() => {
     const initializeApp = async () => {
-        // Carregar animes
-        await pegar();
-        
-        // Verificar status do login
         try {
+            // Carregar animes
+            await pegar();
+            
+            // Verificar status do login
             if (isAuthenticated()) {
+                console.log('Usuário está autenticado, buscando dados...');
                 const data = await getUserData();
+                console.log('Dados do usuário recebidos:', data);
+                
                 if (data.user) {
                     // Garantir que a URL da imagem está completa
                     if (data.user.profileImage) {
@@ -27,9 +30,13 @@ useEffect(() => {
                         userImage.src = data.user.profileImage;
                     }
                 }
+            } else {
+                console.log('Usuário não está autenticado');
+                setUserData(null);
+                setIsLoggedIn(false);
             }
         } catch (error) {
-            console.error('Erro ao verificar login:', error);
+            console.error('Erro ao inicializar app:', error);
             setUserData(null);
             setIsLoggedIn(false);
             // Resetar a imagem do usuário para a padrão em caso de erro
@@ -46,7 +53,9 @@ useEffect(() => {
 const handleLogin = async (e) => {
     e.preventDefault();
     try {
+        console.log('Iniciando processo de login...');
         const data = await login(loginForm.username, loginForm.password);
+        console.log('Login bem sucedido:', data);
         
         // Garantir que a URL da imagem está completa
         if (data.user.profileImage) {
@@ -64,14 +73,16 @@ const handleLogin = async (e) => {
         }
         setError('');
     } catch (error) {
+        console.error('Erro no login:', error);
         setError(error.message || 'Erro ao fazer login');
-        console.error(error);
     }
 };
 
 const handleLogout = async () => {
     try {
+        console.log('Iniciando processo de logout...');
         await logout();
+        console.log('Logout realizado com sucesso');
     } catch (error) {
         console.error('Erro ao fazer logout:', error);
     } finally {
