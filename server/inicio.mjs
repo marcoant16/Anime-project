@@ -11,12 +11,29 @@ const __dirname = path.dirname(__filename);
 
 //Middwares
 const app = express()
+
+// Configuração do CORS
+const allowedOrigins = [
+    'http://localhost:5173',
+    'https://anime-project-a4ns.onrender.com'
+];
+
 app.use(cors({
-    origin: process.env.CLIENT_URL || 'http://localhost:5173',
+    origin: function(origin, callback) {
+        // Permite requisições sem origin (como mobile apps ou curl)
+        if (!origin) return callback(null, true);
+        
+        if (allowedOrigins.indexOf(origin) === -1) {
+            const msg = 'A política CORS para este site não permite acesso da origem especificada.';
+            return callback(new Error(msg), false);
+        }
+        return callback(null, true);
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization']
-}))
+    allowedHeaders: ['Content-Type', 'Authorization', 'Cookie']
+}));
+
 app.use(cookieParser())
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))

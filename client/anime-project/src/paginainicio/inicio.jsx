@@ -355,9 +355,6 @@ function Inicio(){
         try {
             const response = await fetch(`${API_URL}/api/users/upload-image`, {
                 method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
-                },
                 credentials: 'include',
                 body: formData
             });
@@ -387,9 +384,7 @@ function Inicio(){
 
         try {
             const response = await fetch(`${API_URL}/api/favoritos`, {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
-                }
+                credentials: 'include'
             });
 
             if (response.ok) {
@@ -412,14 +407,11 @@ function Inicio(){
             try {
                     const deleteResponse = await fetch(`${API_URL}/api/users/delete-account`, {
                     method: 'DELETE',
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('token')}`
-                    }
+                    credentials: 'include'
                 });
 
                     if (deleteResponse.ok) {
                     // Limpar dados locais
-                    localStorage.removeItem('token');
                     setUserData(null);
                     setIsLoggedIn(false);
                     // Resetar a imagem do usuário para a padrão
