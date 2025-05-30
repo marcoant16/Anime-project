@@ -15,7 +15,8 @@ const app = express()
 // Configuração do CORS
 const allowedOrigins = [
     'http://localhost:5173',
-    'https://anime-project-frontend.onrender.com'
+    'https://anime-project-frontend.onrender.com',
+    'https://anime-project-a4ns.onrender.com'
 ];
 
 app.use(cors({

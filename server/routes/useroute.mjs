@@ -97,7 +97,7 @@ userota.post('/login', async (req, res) => {
             httpOnly: true,
             secure: true,
             sameSite: 'none',
-            domain: 'anime-project-server.onrender.com',
+            domain: 'anime-project-a4ns.onrender.com',
             maxAge: 7 * 24 * 60 * 60 * 1000 // 7 dias
         });
         
@@ -110,6 +110,7 @@ userota.post('/login', async (req, res) => {
             }
         });
     } catch (error) {
+        console.error('Erro no login:', error);
         res.status(500).json({ error: 'Erro ao fazer login' });
     }
 });
@@ -170,7 +171,7 @@ userota.post('/logout', (req, res) => {
         httpOnly: true,
         secure: true,
         sameSite: 'none',
-        domain: 'anime-project-server.onrender.com'
+        domain: 'anime-project-a4ns.onrender.com'
     });
     res.json({ message: 'Logout realizado com sucesso' });
 });
