@@ -6,16 +6,20 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 async function authenticate(req, res, next) {
     try {
-        console.log('Cookies recebidos:', req.cookies);
-        const token = req.cookies.token;
-        
-        if (!token) {
-            console.log('Token não fornecido');
+        // Verifica o token no header Authorization
+        const authHeader = req.headers.authorization;
+        console.log('Header de autorização:', authHeader);
+
+        if (!authHeader || !authHeader.startsWith('Bearer ')) {
+            console.log('Token não fornecido no header');
             return res.status(401).json({ 
                 error: 'Token não fornecido',
                 message: 'É necessário estar autenticado para acessar este recurso'
             });
         }
+
+        const token = authHeader.split(' ')[1];
+        console.log('Token extraído:', token);
 
         try {
             console.log('Tentando verificar o token...');

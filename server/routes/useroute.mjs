@@ -92,15 +92,8 @@ userota.post('/login', async (req, res) => {
             { expiresIn: '7d' }
         );
         
-        // Configurando o cookie sem domínio específico
-        res.cookie('token', token, {
-            httpOnly: true,
-            secure: true,
-            sameSite: 'none',
-            maxAge: 7 * 24 * 60 * 60 * 1000 // 7 dias
-        });
-        
         res.json({ 
+            token,
             user: {
                 id: user._id,
                 username: user.username,
@@ -166,11 +159,6 @@ userota.delete('/delete-account', authenticate, async (req, res) => {
 
 // Rota para logout
 userota.post('/logout', (req, res) => {
-    res.clearCookie('token', {
-        httpOnly: true,
-        secure: true,
-        sameSite: 'none'
-    });
     res.json({ message: 'Logout realizado com sucesso' });
 });
 
