@@ -658,7 +658,7 @@ function Inicio(){
                                 
                                 <div className="carin2avalicont">
                                     <Heart animeData={{
-                                        mal_id: animeMalIds[expandedCard], // Usando o mal_id real do anime
+                                        mal_id: animeMalIds[expandedCard], // Usando o id do anime
                                         title: animeTitles[expandedCard],
                                         images: {
                                             jpg: {
