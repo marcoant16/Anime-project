@@ -5,8 +5,18 @@
 /*media exclusivas para larguras*/
 
 @media screen and (min-width: 1920px){
+
+    .userimagecont{
+        height: 100%;
+        width: 120px;
+    }
+
+    .libs{
+        font-size: 2.3em;
+    }
+
     .cardname2{
-        font-size: 3.1em;
+        font-size: 2.9em;
     }
 
     .cardinfo2sinopse{
