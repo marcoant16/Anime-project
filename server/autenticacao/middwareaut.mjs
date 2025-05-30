@@ -6,6 +6,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 async function authenticate(req, res, next) {
     try {
+        console.log('Cookies recebidos:', req.cookies);
         const token = req.cookies.token;
         
         if (!token) {
@@ -17,7 +18,9 @@ async function authenticate(req, res, next) {
         }
 
         try {
+            console.log('Tentando verificar o token...');
             const decoded = jwt.verify(token, JWT_SECRET);
+            console.log('Token decodificado:', decoded);
             
             // Verifica se o usuário ainda existe no banco
             const user = await User.findById(decoded.userId);
@@ -29,6 +32,7 @@ async function authenticate(req, res, next) {
                 });
             }
 
+            console.log('Usuário encontrado:', user.username);
             // Adiciona informações do usuário ao request
             req.user = {
                 id: user._id,

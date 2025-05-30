@@ -34,11 +34,12 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization', 'Cookie']
 }));
 
-// Middleware para processar cookies
+// Middleware para processar cookies (deve vir antes das rotas)
 app.use(cookieParser());
 
-app.use(express.json())
-app.use(express.urlencoded({extended:false}))
+// Middleware para processar JSON
+app.use(express.json());
+app.use(express.urlencoded({extended:false}));
 
 // Servir arquivos estáticos
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));

@@ -92,12 +92,11 @@ userota.post('/login', async (req, res) => {
             { expiresIn: '7d' }
         );
         
-        // Configurando o cookie com domínio específico
+        // Configurando o cookie sem domínio específico
         res.cookie('token', token, {
             httpOnly: true,
             secure: true,
             sameSite: 'none',
-            domain: 'anime-project-server.onrender.com',
             maxAge: 7 * 24 * 60 * 60 * 1000 // 7 dias
         });
         
@@ -170,8 +169,7 @@ userota.post('/logout', (req, res) => {
     res.clearCookie('token', {
         httpOnly: true,
         secure: true,
-        sameSite: 'none',
-        domain: 'anime-project-server.onrender.com'
+        sameSite: 'none'
     });
     res.json({ message: 'Logout realizado com sucesso' });
 });
