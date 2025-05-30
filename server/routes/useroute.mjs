@@ -89,15 +89,16 @@ userota.post('/login', async (req, res) => {
                 email: user.email
             }, 
             JWT_SECRET, 
-            { expiresIn: '7d' } // Aumentando o tempo de expiração para 7 dias
+            { expiresIn: '7d' }
         );
         
-        // Configurando o cookie
+        // Configurando o cookie com domínio específico
         res.cookie('token', token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production', // true em produção
-            sameSite: 'strict',
-            maxAge: 7 * 24 * 60 * 60 * 1000 // 7 dias em milissegundos
+            secure: true, // Sempre true em produção
+            sameSite: 'none', // Permite cross-site
+            domain: '.onrender.com', // Domínio compartilhado
+            maxAge: 7 * 24 * 60 * 60 * 1000 // 7 dias
         });
         
         res.json({ 
@@ -167,8 +168,9 @@ userota.delete('/delete-account', authenticate, async (req, res) => {
 userota.post('/logout', (req, res) => {
     res.clearCookie('token', {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict'
+        secure: true,
+        sameSite: 'none',
+        domain: '.onrender.com'
     });
     res.json({ message: 'Logout realizado com sucesso' });
 });
