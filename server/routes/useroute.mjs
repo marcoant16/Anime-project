@@ -72,7 +72,11 @@ userota.post('/login', async (req, res) => {
     const { username, password } = req.body;
 
     try {
-        const user = await User.findOne({ username });
+        // Busca o usuário ignorando maiúsculas/minúsculas
+        const user = await User.findOne({ 
+            username: { $regex: new RegExp(`^${username}$`, 'i') }
+        });
+
         if (!user) {
             return res.status(401).json({ error: 'Usuário não encontrado' });
         }
@@ -89,7 +93,7 @@ userota.post('/login', async (req, res) => {
                 email: user.email
             }, 
             JWT_SECRET, 
-            { expiresIn: '7d' }
+            { expiresIn: '7d' } // Aumentando o tempo de expiração para 7 dias
         );
         
         res.json({ 
@@ -155,11 +159,6 @@ userota.delete('/delete-account', authenticate, async (req, res) => {
         console.error('Erro ao deletar conta:', error);
         res.status(500).json({ error: 'Erro ao deletar conta' });
     }
-});
-
-// Rota para logout
-userota.post('/logout', (req, res) => {
-    res.json({ message: 'Logout realizado com sucesso' });
 });
 
 export default userota;

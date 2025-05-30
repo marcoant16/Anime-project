@@ -1,7 +1,6 @@
-import express from 'express';
+import e from "express";
 import mongoose from "mongoose";
 import cors from 'cors';
-import cookieParser from 'cookie-parser';
 import 'dotenv/config'
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -10,39 +9,18 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 //Middwares
-const app = express()
-
-// Configuração do CORS
-const allowedOrigins = [
-    'http://localhost:5173',
-    'https://anime-project-a4ns.onrender.com'
-];
-
+const app = e()
 app.use(cors({
-    origin: function(origin, callback) {
-        // Permite requisições sem origin (como mobile apps ou curl)
-        if (!origin) return callback(null, true);
-        
-        if (allowedOrigins.indexOf(origin) === -1) {
-            const msg = 'A política CORS para este site não permite acesso da origem especificada.';
-            return callback(new Error(msg), false);
-        }
-        return callback(null, true);
-    },
+    origin: process.env.CLIENT_ORIGIN || 'http://localhost:5173',
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'Cookie']
-}));
-
-// Middleware para processar cookies (deve vir antes das rotas)
-app.use(cookieParser());
-
-// Middleware para processar JSON
-app.use(express.json());
-app.use(express.urlencoded({extended:false}));
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}))
+app.use(e.json())
+app.use(e.urlencoded({extended:false}))
 
 // Servir arquivos estáticos
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', e.static(path.join(__dirname, 'uploads')));
 
 //rotas
 import farota from "./routes/favoritorota.mjs";
