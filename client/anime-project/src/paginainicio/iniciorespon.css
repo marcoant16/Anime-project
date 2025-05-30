@@ -12,6 +12,10 @@
     .cardinfo2sinopse{
         font-size: 2.4em;
     }
+
+    .cardinfo2minicont2{
+        font-size: 2.1em;
+    }
 }
 
 @media screen and (min-width:700px){
