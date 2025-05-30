@@ -95,9 +95,9 @@ userota.post('/login', async (req, res) => {
         // Configurando o cookie com domínio específico
         res.cookie('token', token, {
             httpOnly: true,
-            secure: true, // Sempre true em produção
-            sameSite: 'none', // Permite cross-site
-            domain: '.onrender.com', // Domínio compartilhado
+            secure: true,
+            sameSite: 'none',
+            domain: 'anime-project-server.onrender.com',
             maxAge: 7 * 24 * 60 * 60 * 1000 // 7 dias
         });
         
@@ -170,7 +170,7 @@ userota.post('/logout', (req, res) => {
         httpOnly: true,
         secure: true,
         sameSite: 'none',
-        domain: '.onrender.com'
+        domain: 'anime-project-server.onrender.com'
     });
     res.json({ message: 'Logout realizado com sucesso' });
 });
