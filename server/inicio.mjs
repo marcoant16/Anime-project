@@ -1,6 +1,7 @@
-import e from "express";
+import express from 'express';
 import mongoose from "mongoose";
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import 'dotenv/config'
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -9,18 +10,19 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 //Middwares
-const app = e()
+const app = express()
 app.use(cors({
-    origin: process.env.CLIENT_ORIGIN || 'http://localhost:5173',
+    origin: process.env.CLIENT_URL || 'http://localhost:5173',
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }))
-app.use(e.json())
-app.use(e.urlencoded({extended:false}))
+app.use(cookieParser())
+app.use(express.json())
+app.use(express.urlencoded({extended:false}))
 
 // Servir arquivos estáticos
-app.use('/uploads', e.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 //rotas
 import farota from "./routes/favoritorota.mjs";

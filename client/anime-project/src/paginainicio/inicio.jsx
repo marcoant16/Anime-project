@@ -154,47 +154,41 @@ function Inicio(){
             await pegar();
             
             // Verificar status do login
-            const token = localStorage.getItem('token');
-            if (token) {
-                try {
-                    const response = await fetch(`${API_URL}/api/users/me`, {
-                        headers: {
-                            'Authorization': `Bearer ${token}`
-                        }
-                    });
-                    
-                    if (!response.ok) {
-                        throw new Error('Erro ao verificar login');
+            try {
+                const response = await fetch(`${API_URL}/api/users/me`, {
+                    credentials: 'include' // Importante: incluir cookies na requisição
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Erro ao verificar login');
+                }
+                
+                const data = await response.json();
+                if (data.user) {
+                    // Garantir que a URL da imagem está completa
+                    if (data.user.profileImage) {
+                        data.user.profileImage = data.user.profileImage.startsWith('http') 
+                            ? data.user.profileImage 
+                            : `${API_URL}${data.user.profileImage}`;
                     }
                     
-                    const data = await response.json();
-                    if (data.user) {
-                        // Garantir que a URL da imagem está completa
-                        if (data.user.profileImage) {
-                            data.user.profileImage = data.user.profileImage.startsWith('http') 
-                                ? data.user.profileImage 
-                                : `${API_URL}${data.user.profileImage}`;
-                        }
-                        
-                        setUserData(data.user);
-                        setIsLoggedIn(true);
-                        
-                        // Atualizar a imagem do usuário no header
-                        const userImage = document.getElementById('userimage');
-                        if (userImage && data.user.profileImage) {
-                            userImage.src = data.user.profileImage;
-                        }
-                    }
-                } catch (error) {
-                    console.error('Erro ao verificar login:', error);
-                    localStorage.removeItem('token');
-                    setUserData(null);
-                    setIsLoggedIn(false);
-                    // Resetar a imagem do usuário para a padrão em caso de erro
+                    setUserData(data.user);
+                    setIsLoggedIn(true);
+                    
+                    // Atualizar a imagem do usuário no header
                     const userImage = document.getElementById('userimage');
-                    if (userImage) {
-                        userImage.src = "https://ih1.redbubble.net/image.5509038997.5349/flat,750x1000,075,t.u1.jpg";
+                    if (userImage && data.user.profileImage) {
+                        userImage.src = data.user.profileImage;
                     }
+                }
+            } catch (error) {
+                console.error('Erro ao verificar login:', error);
+                setUserData(null);
+                setIsLoggedIn(false);
+                // Resetar a imagem do usuário para a padrão em caso de erro
+                const userImage = document.getElementById('userimage');
+                if (userImage) {
+                    userImage.src = "https://ih1.redbubble.net/image.5509038997.5349/flat,750x1000,075,t.u1.jpg";
                 }
             }
         };
@@ -267,18 +261,15 @@ function Inicio(){
             const response = await fetch(`${API_URL}/api/users/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                credentials: 'include',
+                credentials: 'include', // Importante: incluir cookies na requisição
                 body: JSON.stringify(loginForm)
             });
             const data = await response.json();
             
             if (response.ok) {
-                localStorage.setItem('token', data.token);
                 // Buscar dados completos do usuário após o login
                 const userResponse = await fetch(`${API_URL}/api/users/me`, {
-                    headers: {
-                        'Authorization': `Bearer ${data.token}`
-                    }
+                    credentials: 'include' // Importante: incluir cookies na requisição
                 });
                 const userData = await userResponse.json();
                 if (userResponse.ok && userData.user) {
@@ -334,14 +325,23 @@ function Inicio(){
         }
     };
 
-    const handleLogout = () => {
-        localStorage.removeItem('token');
-        setUserData(null);
-        setIsLoggedIn(false);
-        // Resetar a imagem do usuário para a padrão
-        const userImage = document.getElementById('userimage');
-        if (userImage) {
-            userImage.src = "https://ih1.redbubble.net/image.5509038997.5349/flat,750x1000,075,t.u1.jpg";
+    const handleLogout = async () => {
+        try {
+            // Fazer uma requisição para o servidor para limpar o cookie
+            await fetch(`${API_URL}/api/users/logout`, {
+                method: 'POST',
+                credentials: 'include'
+            });
+        } catch (error) {
+            console.error('Erro ao fazer logout:', error);
+        } finally {
+            setUserData(null);
+            setIsLoggedIn(false);
+            // Resetar a imagem do usuário para a padrão
+            const userImage = document.getElementById('userimage');
+            if (userImage) {
+                userImage.src = "https://ih1.redbubble.net/image.5509038997.5349/flat,750x1000,075,t.u1.jpg";
+            }
         }
     };
 
