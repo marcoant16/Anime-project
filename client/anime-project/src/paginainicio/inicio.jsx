@@ -193,7 +193,7 @@ function Inicio(){
                     // Resetar a imagem do usuário para a padrão em caso de erro
                     const userImage = document.getElementById('userimage');
                     if (userImage) {
-                        userImage.src = "https://ih1.redbubble.net/image.5509038997.5349/flat,750x1000,075,t.u1.jpg";
+                        userImage.src = "https://i.imghippo.com/files/LmQd1838uc.jpg";
                     }
                 }
             }
@@ -361,7 +361,7 @@ function Inicio(){
         // Resetar a imagem do usuário para a padrão
         const userImage = document.getElementById('userimage');
         if (userImage) {
-            userImage.src = "https://ih1.redbubble.net/image.5509038997.5349/flat,750x1000,075,t.u1.jpg";
+            userImage.src = "https://i.imghippo.com/files/LmQd1838uc.jpg";
         }
     };
 
@@ -446,7 +446,7 @@ function Inicio(){
                     // Resetar a imagem do usuário para a padrão
                     const userImage = document.getElementById('userimage');
                     if (userImage) {
-                        userImage.src = "https://ih1.redbubble.net/image.5509038997.5349/flat,750x1000,075,t.u1.jpg";
+                        userImage.src = "https://i.imghippo.com/files/LmQd1838uc.jpg";
                     }
                     // Fechar o perfil
                     setIsProfileOpen(false);
@@ -596,7 +596,7 @@ function Inicio(){
 
                   <nav className="kinav">
                       <div className="userimagecont">
-                         <img id="userimage" src="https://ih1.redbubble.net/image.5509038997.5349/flat,750x1000,075,t.u1.jpg" alt="user-image" />
+                         <img id="userimage" src="https://i.imghippo.com/files/LmQd1838uc.jpg" alt="user-image" />
                       </div>
 
                       <div className="kioptionscont">

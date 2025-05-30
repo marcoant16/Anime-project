@@ -8,7 +8,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-//Middwares
+//Middwaress
 const app = e()
 app.use(cors({
     origin: process.env.CLIENT_ORIGIN || 'http://localhost:5173',
